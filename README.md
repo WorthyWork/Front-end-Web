@@ -1,3 +1,9 @@
+[![Logo](https://opendata-contest.tca.org.tw/Images/banner_1920x1080bg_2022.jpg)](https://opendata-contest.tca.org.tw/)
+# 資料創新應用競賽作品
+- 就業多元創新應用組
+- 參賽編號: OD-16040149	
+- 產品或服務名稱: WorthyWork─智能工作推薦暨比較平台
+
 ## Installation
 
 Initialize front-end:
@@ -6,7 +12,7 @@ $ cd client
 $ npm install express
 ```
 
-Initialize front-back:
+Initialize back-end:
 ```console
 $ cd server
 $ npm install express
