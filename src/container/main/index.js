@@ -1,7 +1,5 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import Footer from "../footer";
-// import NavBar from "./navbar";
 import '../../styles/index.css'
 import { MainBox, Transition, Root } from "../StyleComponent"
 import Home from "../../pages/Home";
@@ -29,7 +27,6 @@ export default function Main() {
             </Route>
             <Redirect from="/" to={`/home`} />
           </Switch>
-          <Footer />
         </Transition>
       </MainBox>
     </Root>

@@ -9,7 +9,7 @@ const CopyrightBox = styled(Box)({
     height: "50px",
     display: "flex",
     justifyContent: "center",
-    // paddingTop: "5%",
+    paddingTop: "5%",
 });
 const TextBox = styled(Box)({
     fontSize: 10,
@@ -34,35 +34,58 @@ const Transition = styled(Box)` ${({ theme }) => `
 })
     };`}
   `;
-const MainBox = styled(Box)({
-
-    flexGrow: 1,
+  const MainBox = styled(Box)({
     paddingRight: 30,
-    paddingLeft: 40,
-    // marginTop: "64px",
-    paddingBottom: "55px",
+    paddingLeft: 30,
     paddingTop: "20px",
-    // height: "calc(100vh - 64px - 20px )",
-    height: "100vh ",
-    overflowY: "auto",
+    height: "calc(100vh)",
+    overflowX: 'hidden',
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
-    minHeight: "100%",
-    marginBottom: "-50px",
     backgroundImage: `url(${Background})`,
+    overflowY: "auto",
     "&::-webkit-scrollbar": {
-        width: "0.4rem",
+      width: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
-        backgroundColor: variables.Lightgrey,
-        borderRadius: 40,
+      backgroundColor: variables.Lightgrey,
+      borderRadius: 20,
     },
     "&::-webkit-scrollbar-thumb": {
-        backgroundColor: variables.Darkgrey,
-        borderRadius: 40,
+      backgroundColor: variables.Darkgrey,
+      borderRadius: 20,
     },
-});
+  });
+// const MainBox = styled(Box)({
+
+//     flexGrow: 1,
+//     paddingRight: 30,
+//     paddingLeft: 40,
+//     // marginTop: "64px",
+//     paddingBottom: "55px",
+//     paddingTop: "20px",
+//     // height: "calc(100vh - 64px - 20px )",
+//     height: "100vh ",
+//     overflowY: "auto",
+//     backgroundSize: "cover",
+//     backgroundPosition: "center",
+//     backgroundRepeat: "no-repeat",
+//     minHeight: "100%",
+//     marginBottom: "-50px",
+//     backgroundImage: `url(${Background})`,
+//     "&::-webkit-scrollbar": {
+//         width: "0.4rem",
+//     },
+//     "&::-webkit-scrollbar-track": {
+//         backgroundColor: variables.Lightgrey,
+//         borderRadius: 40,
+//     },
+//     "&::-webkit-scrollbar-thumb": {
+//         backgroundColor: variables.Darkgrey,
+//         borderRadius: 40,
+//     },
+// });
 
 export {
     CopyrightBox, TextBox,
