@@ -45,7 +45,7 @@ $ npm run swagger-autogen
 ```
 ## People
 
-The original author of Express is [WorhyWork DevTeam](https://github.com/WorthyWork)
+The original author of WorthyWorkApp is [WorhyWork DevTeam](https://github.com/WorthyWork)
 
 [List of all contributors](https://github.com/WorthyWork/WorthyWorkApp/graphs/contributorss)
 
