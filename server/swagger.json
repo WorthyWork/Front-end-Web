@@ -1,9 +1,9 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "1.0.0",
     "title": "WorthyWork Web API",
-    "description": ""
+    "description": "opendata-contest project used.",
+    "version": "1.0.0"
   },
   "host": "localhost:5000",
   "basePath": "/",
