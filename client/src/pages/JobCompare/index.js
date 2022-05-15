@@ -26,6 +26,9 @@ const dividerData=[
 const vacancyData = [
   {title:'工作待遇',value:' 月薪2,8000以上'},
   {title:'工作性質',additionInfo:'全職 日班' ,value: '0830-1730' },
+  {title :'上班地點', value:'台北市南港區經貿二路157巷'},
+  {title :'供膳', value:'提供1餐，每餐扣款金額0'},
+  {title :'加班', value:'依工作需要'}
 
 ]
 
