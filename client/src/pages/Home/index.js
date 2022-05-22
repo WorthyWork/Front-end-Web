@@ -1,38 +1,46 @@
-import React from "react";
-import { Grid } from "@mui/material";
+import React,{ useState,useEffect} from "react";
 import { styled } from '@mui/material/styles';
-import Axios from "axios";
+import axios from 'axios';
+import ItemCard from "./components/ItemCard";
+
 
 const Root = styled('div')({
-  // minHeight: "55vh",
   flexGrow: 1,
   margin: "auto",
-  // height: "auto",
   height: "87vh",
   marginTop: "2rem"
 });
 
-
 export default function Home() {
+  const [jobDataList,setJobDataList]= useState([])
 
-  Axios({
-    method: "GET",
-    url: "http://localhost:5000/job/list",
-    // headers: {
-    //   "accept": "application/json"
-    // }
-  }).then(res => {
-    console.log(res.data);
-  }).catch((e) => {
-    alert("職缺列表拿取失敗!", e);
-  });
+  useEffect(() => {
+    const fetchData = async () =>{
+      try {
+        const {data: response} = await axios.get('http://localhost:5000/job/list');
+        setJobDataList(response);
+      } catch (error) {
+        console.error(error.message);
+      }
+    }
 
+    fetchData();
+  }, []);
+
+
+  const ItemList = (number) => {
+    const row = [];
+    for (var i = 0; i < number ; i++) {
+      row.push(
+        <ItemCard key={i+""} i={i} jobDataList={jobDataList} />
+      );      
+    }
+    return row
+  };
 
   return (
     <Root>
-      <Grid fontSize={"3rem"} textAlign="center" >
-        Home
-      </Grid>
+      { ItemList(10)}
     </Root>
   )
 }
