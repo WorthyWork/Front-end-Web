@@ -10,8 +10,10 @@ const swaggerDocument = require('./swagger.json');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const joblistRouter = require('./routes/joblist')
-
 app.use('/job', joblistRouter)
+
+const illegalRouter = require('./routes/illegal')
+app.use('/illegal', illegalRouter)
 
 // app.get("/", (req, res) => {
 //     res.json({ "jobs":[{"job1":"job description"},{"job2":"job description"}]})
