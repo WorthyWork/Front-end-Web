@@ -1,4 +1,4 @@
-import React,{ useState} from 'react'
+import React,{ useEffect, useState} from 'react'
 import { Box ,Paper,Avatar,Grid,Checkbox} from "@mui/material";
 import Typography from '@mui/material/Typography';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
@@ -37,10 +37,33 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
 export default function ItemCard(props) {
   const jobDataList = props.jobDataList? props.jobDataList:[]
   const i = props.i
-  const [checked, setChecked] = useState(false);
+  const pickCount = props.pickCount
+  const setPickCount = props.setPickCount
+  const firstPick = props.firstPick
+  const setFirstPick = props.setFirstPick
+  const secondPick = props.secondPick
+  const setSecondPick = props.setSecondPick
+  const [checked, setChecked] = useState(false)
+
+
   const handleChange = (event) => {
     setChecked(event.target.checked);
+    if(pickCount===0){
+      setFirstPick(i)
+      setPickCount(1)
+    }else if (pickCount===1){
+      setSecondPick(i)
+      setPickCount(2)
+    }
+    // if()
   };
+
+  useEffect(()=>{
+    if(firstPick===i ||secondPick===i){
+      setChecked(true)
+    }
+  },[])
+
 
   return (
     <Box sx={{ overflow: 'hidden', px: 3 ,pl:"15rem"}}>
@@ -64,7 +87,7 @@ export default function ItemCard(props) {
             justifyContent="space-between"
             alignItems="center"
             >
-            <Typography noWrap sx={{fontSize:"1.5rem",fontWeight:600}}>{jobDataList[i]?jobDataList[i].OCCU_DESC:null}</Typography>
+            <Typography noWrap sx={{fontSize:"1.5rem",fontWeight:600,width:"535px"}}>{jobDataList[i]?jobDataList[i].OCCU_DESC:null}</Typography>
            {/* <Box      
               display='flex'
              justifyContent="flex-end">  */}
@@ -75,11 +98,12 @@ export default function ItemCard(props) {
           
           control={
           <Checkbox
-          inputProps={{ 'aria-label': 'controlled' }}
+            inputProps={{ 'aria-label': 'controlled' }}
             checked={checked}
             onChange={handleChange}
             icon={<RadioButtonUncheckedRoundedIcon />}
             checkedIcon={<CheckCircleRoundedIcon />}
+            // disabled={pickCount==2 && i!==firstPick && i!==secondPick}
             // {...label}
             sx={{
               color: variables.Focus_Green,
