@@ -24,7 +24,7 @@ const TextBox = styled(Box)({
 
 const Root = styled('div')({
     flexGrow: 1,
-    maxHeight: "100vh",
+    // maxHeight: "100vh",
     overflowY: "hidden",
 });
 const Transition = styled(Box)` ${({ theme }) => `
@@ -38,7 +38,8 @@ const Transition = styled(Box)` ${({ theme }) => `
     paddingRight: 30,
     paddingLeft: 30,
     paddingTop: "20px",
-    height: "calc(100vh)",
+    // height: "calc(100vh)",
+    // height: "calc(100vh-10px)",
     overflowX: 'hidden',
     backgroundSize: "cover",
     backgroundPosition: "center",
@@ -57,35 +58,7 @@ const Transition = styled(Box)` ${({ theme }) => `
       borderRadius: 20,
     },
   });
-// const MainBox = styled(Box)({
 
-//     flexGrow: 1,
-//     paddingRight: 30,
-//     paddingLeft: 40,
-//     // marginTop: "64px",
-//     paddingBottom: "55px",
-//     paddingTop: "20px",
-//     // height: "calc(100vh - 64px - 20px )",
-//     height: "100vh ",
-//     overflowY: "auto",
-//     backgroundSize: "cover",
-//     backgroundPosition: "center",
-//     backgroundRepeat: "no-repeat",
-//     minHeight: "100%",
-//     marginBottom: "-50px",
-//     backgroundImage: `url(${Background})`,
-//     "&::-webkit-scrollbar": {
-//         width: "0.4rem",
-//     },
-//     "&::-webkit-scrollbar-track": {
-//         backgroundColor: variables.Lightgrey,
-//         borderRadius: 40,
-//     },
-//     "&::-webkit-scrollbar-thumb": {
-//         backgroundColor: variables.Darkgrey,
-//         borderRadius: 40,
-//     },
-// });
 
 export {
     CopyrightBox, TextBox,
