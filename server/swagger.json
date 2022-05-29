@@ -61,6 +61,24 @@
           }
         }
       }
+    },
+    "/capital/{companyName}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "companyName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   }
 }

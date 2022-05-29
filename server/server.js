@@ -15,8 +15,7 @@ app.use('/job', joblistRouter)
 const illegalRouter = require('./routes/illegal')
 app.use('/illegal', illegalRouter)
 
-// app.get("/", (req, res) => {
-//     res.json({ "jobs":[{"job1":"job description"},{"job2":"job description"}]})
-// })
+const capitalRouter = require('./routes/capital')
+app.use('/capital', capitalRouter)
 
 app.listen(5000, () => {console.log("Server started on port 5000...")})
