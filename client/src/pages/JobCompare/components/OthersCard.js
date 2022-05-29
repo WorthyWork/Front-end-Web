@@ -22,7 +22,10 @@ export default function OthersCard(props) {
            {row.additionInfo}
          </Typography>
          <Typography fontSize={"1.2rem"} >
-           {row.value}
+           {row.value} 
+         </Typography>
+         <Typography fontSize={"1.2rem"} >
+           {row.checkDetail} 
          </Typography>
          </Box>
        </div>

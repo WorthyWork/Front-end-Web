@@ -1,10 +1,14 @@
 import React from 'react'
 import ReactEcharts from "echarts-for-react";
 
-export default function Index() {
+export default function Index(props) {
+
+const categoryA = props.categoryA
+const categoryB = props.categoryB
+
 const getOption = () => ({
   title: {
-    text: "近三年薪資漲幅",
+    text: "近三年平均薪資",
     x: "center",
 
   },
@@ -12,9 +16,9 @@ const getOption = () => ({
   tooltip: {},
   dataset: {
     source: [
-      ['product', '2019', '2020', '2021'],
-      ['製造業', 43.3, 85.8, 93.7],
-      ['批發業', 83.1, 73.4, 55.1],
+      ['product', '108年', '109年', '110年'],
+      [categoryA, 41467,39443, 39957],
+      [categoryB, 38938, 39026,40122],
 
     ]
   },

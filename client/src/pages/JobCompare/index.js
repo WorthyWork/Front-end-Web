@@ -1,5 +1,5 @@
-import React from "react";
-import { Grid,Box} from "@mui/material";
+import React, { useEffect,useState } from "react";
+import { Grid,Box,IconButton} from "@mui/material";
 import JobTitleCard from "./components/JobTitleCard";
 import OthersCard from "./components/OthersCard";
 import DividerTitle from "./components/DividerTitle";
@@ -8,45 +8,113 @@ import Typography from '@mui/material/Typography';
 import variables from "../../styles/variables";
 import { Root } from "./StyleComponents";
 import Chart from"./components/Chart/index"
+import {useLocation,useHistory} from"react-router-dom"
+import ApplyCard from "./components/ApplyCard";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import IllegalDialog from "./components/IllegalDialog";
+import { CheckIllegalBtn } from "./StyleComponents";
 
+
+const scrollToAnchor = (anchorname) => {
+  if (anchorname) {
+    const anchorElement = document.getElementById(anchorname);
+    if (anchorElement) {
+      anchorElement.scrollIntoView({ behavior: "auto", block: "start", inline: 'start' });
+    }
+  }
+};
 
 export default function JobCompare() {
+  const location = useLocation()
+  let history = useHistory();
+  const selectItemA = location.selectItemA ? location.selectItemA:''
+  const selectItemB = location.selectItemB ? location.selectItemB:''
+  const illegalA = location.illegalA
+  const illegalB = location.illegalB
+  const capitalA = location.capitalA[0].Capital_Stock_Amount
+  const capitalB = location.capitalB[0].Capital_Stock_Amount
+  const [openDialog, setOpenDialog] = useState(false);
+  const [sendIllegalData,setSendIllefalData] = useState([])
+  const handleOpenDialog = (data) => {
+    // illegal dialog 用
+    setSendIllefalData(data)
+    setOpenDialog(true);
+  };
 
-const dividerData=[
+  const backToHomePage = () => {
+    history.push("/home");
+  }
+
+  const dividerData=[
     "公司比較",
     "職缺比較",
     "行業比較"
   ]
 
-  const companyData = [
-    {title:'資本額',value:' 5,000,000元'},
-    {title:'有無違反勞動法令',value: '1筆' },
+  const companyDataA = [
+    {title:'資本額',value:capitalA+"元"},
+    {title:'有無違反勞動法令',
+    value: illegalA.length>0 ? illegalA.length +"筆" :"0筆",
+    checkDetail: illegalA.length>0  ?<CheckIllegalBtn variant="outlined" onClick={()=>handleOpenDialog(illegalA)}>查看詳細內容</CheckIllegalBtn> :null},
 ]
 
-const vacancyData = [
-  {title:'工作待遇',value:' 月薪2,8000以上'},
-  {title:'工作性質',additionInfo:'全職 日班' ,value: '0830-1730' },
-  {title :'上班地點', value:'台北市南港區經貿二路157巷'},
-  {title :'供膳', value:'提供1餐，每餐扣款金額0'},
-  {title :'加班', value:'依工作需要'}
+const companyDataB = [
+  {title:'資本額',value:capitalB+"元"},
+  {title:'有無違反勞動法令',
+  value: illegalB.length>0 ?illegalB.length+"筆" :"0筆",
+  checkDetail: illegalB.length>0 ?<CheckIllegalBtn  variant="outlined" sx={{color:variables.Focus_Green}}onClick={()=>handleOpenDialog(illegalB)}>查看詳細內容</CheckIllegalBtn> :null },
+]
+
+
+
+const vacancyDataA = [
+  {title:'工作待遇',value:'月薪 33000 - 36000 元'},
+  {title:'員工性質',value:selectItemA?selectItemA.WK_TYPE:'' },
+  {title:'上班時間',additionInfo:selectItemA?selectItemA.WKTIME:'',value: '0830-1730' },
+  {title :'上班地點', value:selectItemA?selectItemA.CITYNAME:''},
+  {title :'學歷', value:selectItemA?selectItemA.EDGRDESC:''},
+  {title :'工作內容', value:selectItemA?selectItemA.JOB_DETAIL:''},
+
+
+]
+const vacancyDataB = [
+  {title:'工作待遇',value:' 月薪 28300 - 34700 元'},
+  {title:'員工性質',value:selectItemB?selectItemB.WK_TYPE:'' },
+  {title:'上班時間',additionInfo:selectItemB?selectItemB.WKTIME:'',value: '0830-1730' },
+  {title :'上班地點', value:selectItemB?selectItemB.CITYNAME:''},
+  {title :'學歷', value:selectItemB?selectItemB.EDGRDESC:''},
+  {title :'工作內容', value:selectItemB?selectItemB.JOB_DETAIL:''},
+
 
 ]
 
 const companyA = [
-  { positionName: "理貨員(包裝作業員)", company:"歐森有限公司(德國好立善 總代理)"  } ,
-   companyData ,
-   vacancyData 
+  { positionName: selectItemA?selectItemA.OCCU_DESC:'', company:selectItemA?selectItemA.COMPNAME:''  } ,
+   companyDataA ,
+   vacancyDataA 
 ]
 
 const companyB = [
-  { positionName: "成品封箱打包技術員", company:"錞鎰科技股份有限公司" }  ,
-   companyData ,
-   vacancyData
+  { positionName: selectItemB?selectItemB.OCCU_DESC:'', company:selectItemB?selectItemB.COMPNAME:'' }  ,
+   companyDataB ,
+   vacancyDataB
 ]
 
+useEffect(()=>{
+  /* eslint-disable */
+  scrollToAnchor('top')
+},[])
+
   return (
-    <Root>
+    <Root  id='top'>
+      <IllegalDialog  openDialog={openDialog} setOpenDialog={setOpenDialog} sendIllegalData={sendIllegalData}/>
       <Grid container >
+      <Box  pl={"5rem"}  position="fixed">
+      <IconButton  size="large" onClick={backToHomePage}>
+      <ArrowBackIcon sx={{ color: variables.Green }} />
+      </IconButton>
+
+      </Box>
         <Grid item xs={12} display="flex" pl={"5rem"} alignItems="center" justifyContent="center">
           <JobTitleCard titleData={companyA[0]} /> 
             <Typography fontSize={"1rem"} sx={{ color: variables.Hover_Green,fontWeight:600}}>VS</Typography> 
@@ -64,14 +132,18 @@ const companyB = [
    <DividerTitle titleData={dividerData[1]}/>
 
     <Grid container spacing={2} pl={"5rem"} justifyContent="center"> 
-       <OthersCard data={companyA[2]}/>
       <OthersCard data={companyA[2]}/>
+      <OthersCard data={companyB[2]}/>
     </Grid>
 
+    <Grid container spacing={2} pl={"5rem"} display="flex" justifyContent="center" pt="2rem" > 
+    <ApplyCard URL={selectItemA?selectItemA.URL_QUERY:''}></ApplyCard>
+    <ApplyCard URL={selectItemB?selectItemB.URL_QUERY:''}></ApplyCard>
+    </Grid>
     <DividerTitle titleData={dividerData[2]}/>
     
       <Box pl={"5rem"}>
-        <Chart/>
+        <Chart categoryA={selectItemA.CJOB_NAME1} categoryB={selectItemB.CJOB_NAME1}/>
       </Box>
       <Footer />
     </Root>

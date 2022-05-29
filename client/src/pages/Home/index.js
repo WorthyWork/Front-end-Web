@@ -4,6 +4,8 @@ import axios from 'axios';
 import ItemCard from "./components/ItemCard";
 import {Pagination,Grid } from "@mui/material";
 import Footer from "../../container/footer";
+import CompareFooter from "./components/CompareFooter";
+
 
 
 const Root = styled('div')({
@@ -22,15 +24,28 @@ export default function Home() {
   const [page, setPage] = useState(1);
   const [startCount,setStartCount] = useState(0)
   const [endCount,setEndCount] = useState(9)
-  const [firstPick,setFirstPick] = useState('')
-  const [secondPick,setSecondPick] = useState('')
-  const [pickCount,setPickCount] = useState(0)
+  const [firstPick,setFirstPick] = useState('') //選取職缺A的index,畫border用
+  const [secondPick,setSecondPick] = useState('') //選取職缺B的index,畫border用
+  const [pickCount,setPickCount] = useState(0) //其餘btn 是否disabled判斷用
+  const [selectItemA,setSelectItemA] = useState() //選取職缺A內容
+  const [selectItemB,setSelectItemB] = useState() //選取職缺B內容
+  const [active, setActive] = useState(false)
+
 
   const scrollToAnchor = (anchorname) => {
     if (anchorname) {
       const anchorElement = document.getElementById(anchorname);
       if (anchorElement) {
         anchorElement.scrollIntoView({ behavior: "smooth", block: "start", inline: 'start' });
+      }
+    }
+  };
+
+  const scrollToAnchorJump = (anchorname) => {
+    if (anchorname) {
+      const anchorElement = document.getElementById(anchorname);
+      if (anchorElement) {
+        anchorElement.scrollIntoView({ behavior: "auto", block: "start", inline: 'start' });
       }
     }
   };
@@ -44,6 +59,8 @@ export default function Home() {
   };
 
   useEffect(() => {
+    /* eslint-disable */
+    scrollToAnchorJump("top");
     const fetchData = async () =>{
       try {
         const {data: response} = await axios.get('http://localhost:5000/job/list');
@@ -64,6 +81,9 @@ export default function Home() {
         <ItemCard key={i+""} i={i} jobDataList={jobDataList} firstPick={firstPick} setFirstPick={setFirstPick}
          secondPick={secondPick} setSecondPick={setSecondPick} 
          pickCount={pickCount} setPickCount={setPickCount}
+         selectItemA={selectItemA}  selectItemB={selectItemB}
+         setSelectItemA={setSelectItemA} setSelectItemB={setSelectItemB}
+         setActive={setActive}
          />
       );      
     }
@@ -73,6 +93,7 @@ export default function Home() {
   return (
 
 <Root id='top' >
+
 { ItemList(startCount,endCount) }
   <Grid
   container
@@ -81,8 +102,9 @@ export default function Home() {
   alignItems="flex-start"
 >
   <Pagination sx={{pt:"2rem"}}  shape="rounded" size="large" count={jobDataList? jobDataList.length/10:10} page={page} onChange={handleChange} />
-  </Grid>
+</Grid>
 <Footer />
+<CompareFooter  active={active} setActive={setActive} pickCount={pickCount} setPickCount={setPickCount} selectItemA={selectItemA} selectItemB={selectItemB} setSelectItemA={setSelectItemA} setSelectItemB={setSelectItemB}/>
 </Root>
 
 

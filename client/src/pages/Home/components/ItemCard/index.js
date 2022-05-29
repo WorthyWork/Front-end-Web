@@ -12,6 +12,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import { styled } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import Skeleton from '@mui/material/Skeleton';
 
 const CustomWidthTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
@@ -43,30 +44,67 @@ export default function ItemCard(props) {
   const setFirstPick = props.setFirstPick
   const secondPick = props.secondPick
   const setSecondPick = props.setSecondPick
+  const selectItemA=props.selectItemA
+  const selectItemB=props.selectItemB
+  const setSelectItemA = props.setSelectItemA
+  const setSelectItemB = props.setSelectItemB
+  const setActive = props.setActive
   const [checked, setChecked] = useState(false)
 
-
   const handleChange = (event) => {
-    setChecked(event.target.checked);
+    setActive(true)
     if(pickCount===0){
-      setFirstPick(i)
-      setPickCount(1)
-    }else if (pickCount===1){
+    setFirstPick(i)
+    setPickCount(1)
+    setSelectItemA(jobDataList[i])     
+    setChecked(true)
+    }
+    else if(firstPick===i){
+      setPickCount(pickCount-1)
+      setChecked(false)
+      setFirstPick("")
+      setSelectItemA("")
+    }
+
+    else if(pickCount===1){
       setSecondPick(i)
       setPickCount(2)
+      setSelectItemB(jobDataList[i])     
+      setChecked(true)
     }
-    // if()
+    else if(secondPick===i){
+      setPickCount(pickCount-1)
+      setChecked(false)
+      setSecondPick("")
+      setSelectItemB("")
+    }
+
   };
 
   useEffect(()=>{
+    /* eslint-disable */
     if(firstPick===i ||secondPick===i){
       setChecked(true)
     }
   },[])
 
+  
+  useEffect(()=>{
+    /* eslint-disable */
+    // setChecked(false)
+    setFirstPick("")
+  },[selectItemA===""])
+
+  useEffect(()=>{
+    /* eslint-disable */
+    // setChecked(false)
+    setSecondPick("")
+  },[selectItemB===""])
+
+
 
   return (
-    <Box sx={{ overflow: 'hidden', px: 3 ,pl:"15rem"}}>
+    <Box sx={{ overflow: 'hidden'}}>
         <StyledPaper
           sx={{
             my: 1,
@@ -76,9 +114,10 @@ export default function ItemCard(props) {
         >
           <Grid container wrap="nowrap" spacing={2}  pt={"0.7rem"}  >
             <Grid  pl={"1rem"} pt={"0.5rem"} >
-              <Avatar variant="rounded" sx={{fontWeight:600,bgcolor:variables.Hover_Green, width: 56, height: 56}}>{jobDataList[i]?jobDataList[i].COMPNAME.slice(0,1):null}</Avatar>
+              {jobDataList[i] ?  <Avatar variant="rounded" sx={{fontWeight:600,bgcolor:variables.Hover_Green, width: 56, height: 56}}>{jobDataList[i]?jobDataList[i].COMPNAME.slice(0,1):null}</Avatar> :    <Skeleton variant="rectangular" width={56} height={56} />}
+            
             </Grid>
-            <Grid item zeroMinWidth pl={"1rem"} sx={{ '&.MuiGrid-item': { paddingLeft:"1rem",paddingTop:0} }}
+            <Grid  zeroMinWidth xs item pl={"1rem"} sx={{ '&.MuiGrid-item': { paddingLeft:"1rem", paddingTop:0} }}
             >
               {/* 職缺名稱 */}
             <Grid
@@ -87,10 +126,8 @@ export default function ItemCard(props) {
             justifyContent="space-between"
             alignItems="center"
             >
-            <Typography noWrap sx={{fontSize:"1.5rem",fontWeight:600,width:"535px"}}>{jobDataList[i]?jobDataList[i].OCCU_DESC:null}</Typography>
-           {/* <Box      
-              display='flex'
-             justifyContent="flex-end">  */}
+              {jobDataList[i]?  <Typography noWrap sx={{fontSize:"1.5rem",fontWeight:600,width:"535px"}}>{jobDataList[i]?jobDataList[i].OCCU_DESC:null}</Typography>  :  <Skeleton variant="text" sx={{width:"300px"}} />}
+          
             <FormControlLabel
         
         sx={{color:variables.Focus_Green}}
@@ -121,7 +158,8 @@ export default function ItemCard(props) {
             </Grid>
               {/* 公司名稱 */}
               <Box display="flex" direction="row" alignItems="center" >
-              <Typography noWrap sx={{fontSize:"1.2rem",color:variables.Green,fontWeight:600}}>{jobDataList[i]?jobDataList[i].COMPNAME:null}</Typography>
+              {jobDataList[i]?    <Typography noWrap sx={{fontSize:"1.2rem",color:variables.Green,fontWeight:600}}>{jobDataList[i]?jobDataList[i].COMPNAME:null}</Typography> :  <Skeleton variant="text" sx={{width:"300px"}} />}
+            
               <Typography noWrap sx={{pl:"2rem",fontSize:"0.8rem"}} >{jobDataList[i]?jobDataList[i].WKTIME:null}</Typography>
               <Typography noWrap sx={{fontSize:"0.8rem"}} >{jobDataList[i]?jobDataList[i].WK_TYPE :null}</Typography>
             </Box>
@@ -145,10 +183,15 @@ export default function ItemCard(props) {
               >
               <Box display="flex" direction="row">
                 {/* 地區 / 薪水 / 學歷 / 人數  */}
+                {jobDataList[i] ?
+                <>
                 <Typography noWrap sx={{fontSize:"1rem"}}><LocationOnIcon sx={{ fontSize: 15,m:"-2px",pr:"3px"  }}/>{jobDataList[i]?jobDataList[i].CITYNAME:null}</Typography>
-                <Typography noWrap sx={{fontSize:"1rem",pl:"1rem"}}><AttachMoneyIcon  sx={{ fontSize: 15,m:"-2px" ,pr:"3px"}}/>{jobDataList[i]?jobDataList[i].SALARYCD :null}</Typography>
-                <Typography noWrap sx={{fontSize:"1rem",pl:"1rem"}}><SchoolIcon  sx={{ fontSize: 15,m:"-2px" ,pr:"7px" }}/>{jobDataList[i]?jobDataList[i].EDGRDESC:null}</Typography>
-                <Typography noWrap sx={{fontSize:"1rem",pl:"1rem"}}><PersonIcon  sx={{ fontSize: 15,m:"-2px",pr:"3px"  }}/>{jobDataList[i]?jobDataList[i].AVAILREQNUM:null}</Typography>
+                 <Typography noWrap sx={{fontSize:"1rem",pl:"1rem"}}><AttachMoneyIcon  sx={{ fontSize: 15,m:"-2px" ,pr:"3px"}}/>{jobDataList[i]?jobDataList[i].SALARYCD :null}</Typography>
+                 <Typography noWrap sx={{fontSize:"1rem",pl:"1rem"}}><SchoolIcon  sx={{ fontSize: 15,m:"-2px" ,pr:"7px" }}/>{jobDataList[i]?jobDataList[i].EDGRDESC:null}</Typography>
+                 <Typography noWrap sx={{fontSize:"1rem",pl:"1rem"}}><PersonIcon  sx={{ fontSize: 15,m:"-2px",pr:"3px"  }}/>{jobDataList[i]?jobDataList[i].AVAILREQNUM:null}</Typography>
+                </>
+                :  <Skeleton variant="text" sx={{width:"300px"}} />}
+               
               </Box>
               </Grid>
               <Box display="flex" justifyContent="flex-end" >

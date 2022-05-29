@@ -35,6 +35,8 @@ const Transition = styled(Box)` ${({ theme }) => `
     };`}
   `;
   const MainBox = styled(Box)({
+    display:"flex",
+    justifyContent:"center",
     paddingRight: 30,
     paddingLeft: 30,
     paddingTop: "20px",

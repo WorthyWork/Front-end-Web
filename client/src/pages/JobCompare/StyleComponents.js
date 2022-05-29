@@ -1,5 +1,6 @@
 import { styled } from '@mui/material/styles';
-import { Paper} from "@mui/material";
+import { Paper,Button} from "@mui/material";
+import variables from '../../styles/variables';
 
 
 // ============= index.js =============
@@ -23,7 +24,26 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
 }));
 
 
+const CheckIllegalBtn = styled(Button)({
+  boxShadow: 'none',
+  textTransform: 'none',
+  fontSize: "0.9rem",
+  fontWeight: "normal",
+  width: "145px",
+  height: 33,
+  borderRadius:"30px",
+  borderColor:variables.Focus_Green,
+  backgroundColor: 'transparent',
+  color: variables.Focus_Green,
+  '&:hover': {
+    borderColor:variables.Focus_Green,
+    backgroundColor: 'transparent',
+    color: variables.Focus_Green,
+  },
+});
+
+
 
 export {
-  Root,StyledPaper
+  Root,StyledPaper,CheckIllegalBtn
 }
