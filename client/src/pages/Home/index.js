@@ -5,6 +5,7 @@ import ItemCard from "./components/ItemCard";
 import {Pagination,Grid } from "@mui/material";
 import Footer from "../../container/footer";
 import CompareFooter from "./components/CompareFooter";
+import UserTestResult from "./components/UserTestResult";
 
 
 
@@ -92,7 +93,9 @@ export default function Home() {
 
   return (
 
-<Root id='top' >
+<Root id="top" >
+
+  <UserTestResult/>
 
 { ItemList(startCount,endCount) }
   <Grid

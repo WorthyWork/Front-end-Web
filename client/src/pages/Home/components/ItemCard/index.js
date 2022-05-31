@@ -27,8 +27,8 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
   // backgroundColor: checked ? 'rgba(2, 73, 89,0.05)':variables.White,
   // backgroundColor: checked ? 'rgba(2, 103, 115,0.1)':variables.White,
   [theme.breakpoints.up("md")]: {
-    minWidth: 720,
-    height:200
+    minWidth: "50rem",
+    height:"13rem"
 },
   maxWidth: 720,
   color: theme.palette.text.primary,

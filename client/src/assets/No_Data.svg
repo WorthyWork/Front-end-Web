@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="210" height="242.661" viewBox="0 0 210 242.661">
+  <g id="Group_9" data-name="Group 9" transform="translate(-533 -5838.339)">
+    <path id="Path_11" data-name="Path 11" d="M557.782,5792.265h91.629v30.569h30.016v120.619H557.782Z" transform="translate(15.718 48.195)" fill="#f3f5f7" stroke="#c0bfbf" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    <path id="Path_12" data-name="Path 12" d="M671.935,5792.265l29.506,30.6" transform="translate(-6.297 48.195)" fill="#fff" stroke="#c0bfbf" stroke-linecap="round" stroke-width="3"/>
+    <g id="Ellipse_17" data-name="Ellipse 17" transform="translate(604 5898)" fill="#9a9898" stroke="#9a9898" stroke-width="1">
+      <circle cx="5" cy="5" r="5" stroke="none"/>
+      <circle cx="5" cy="5" r="4.5" fill="none"/>
+    </g>
+    <g id="Ellipse_18" data-name="Ellipse 18" transform="translate(655 5898)" fill="#9a9898" stroke="#9a9898" stroke-width="1">
+      <ellipse cx="5.5" cy="5" rx="5.5" ry="5" stroke="none"/>
+      <ellipse cx="5.5" cy="5" rx="5" ry="4.5" fill="none"/>
+    </g>
+    <path id="Path_13" data-name="Path 13" d="M607.616,5891.357s23.55,23.01,48.214,0" transform="translate(2.884 33.529)" fill="none" stroke="#9a9898" stroke-linecap="round" stroke-width="4"/>
+    <g id="Ellipse_19" data-name="Ellipse 19" transform="translate(536 6001)" fill="#ccc" stroke="#ccc" stroke-width="1">
+      <ellipse cx="102" cy="11" rx="102" ry="11" stroke="none"/>
+      <ellipse cx="102" cy="11" rx="101.5" ry="10.5" fill="none"/>
+    </g>
+    <text id="無測驗結果資料" transform="translate(533 6073)" fill="#3f3f3f" font-size="30" font-family="YuGothicUI-Bold, Yu Gothic UI" font-weight="700"><tspan x="0" y="0">無測驗結果資料</tspan></text>
+  </g>
+</svg>
