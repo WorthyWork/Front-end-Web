@@ -7,12 +7,29 @@
   },
   "host": "localhost:5000",
   "basePath": "/",
+  "tags": [
+    {
+      "name": "Job",
+      "description": "職缺列表相關操作"
+    },
+    {
+      "name": "Illegal",
+      "description": "查詢違法勞動法令事業單位相關操作"
+    },
+    {
+      "name": "Company",
+      "description": "查詢公司資本資料"
+    }
+  ],
   "schemes": [
     "http"
   ],
   "paths": {
     "/job/list": {
       "get": {
+        "tags": [
+          "Job"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -24,6 +41,9 @@
     },
     "/job/category": {
       "get": {
+        "tags": [
+          "Job"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -33,8 +53,31 @@
         }
       }
     },
+    "/job/salary": {
+      "get": {
+        "tags": [
+          "Job"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/illegal/all": {
       "get": {
+        "tags": [
+          "Illegal"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -46,6 +89,9 @@
     },
     "/illegal/{companyName}": {
       "get": {
+        "tags": [
+          "Illegal"
+        ],
         "description": "",
         "parameters": [
           {
@@ -64,6 +110,9 @@
     },
     "/capital/{companyName}": {
       "get": {
+        "tags": [
+          "Company"
+        ],
         "description": "",
         "parameters": [
           {

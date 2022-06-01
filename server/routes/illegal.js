@@ -3,6 +3,7 @@ const router = express.Router()
 const axios = require("axios");
 
 router.get("/all", async (req, res, next) => {
+  // #swagger.tags = ['Illegal']
   try {
     const response = await axios.get("https://quality.data.gov.tw/dq_download_json.php?nid=109896&md5_url=0c6e622115227edf5520c84558b32d7d")
     let json = response.data
@@ -13,6 +14,7 @@ router.get("/all", async (req, res, next) => {
   }
 })
 router.get("/:companyName", async (req, res, next) => {
+  // #swagger.tags = ['Illegal']
   try {
     const response = await axios.get("https://quality.data.gov.tw/dq_download_json.php?nid=109896&md5_url=0c6e622115227edf5520c84558b32d7d")
     let json = response.data
