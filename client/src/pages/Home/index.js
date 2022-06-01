@@ -1,15 +1,15 @@
-import React,{ useState,useEffect} from "react";
-import { styled } from '@mui/material/styles';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { styled } from "@mui/material/styles";
+import axios from "axios";
 import ItemCard from "./components/ItemCard";
-import {Pagination,Grid } from "@mui/material";
+import { Pagination, Grid, Typography } from "@mui/material";
 import Footer from "../../container/footer";
 import CompareFooter from "./components/CompareFooter";
 import UserTestResult from "./components/UserTestResult";
+import ENFJ from "../../assets/ENFJ.svg";
+import variables from "../../styles/variables";
 
-
-
-const Root = styled('div')({
+const Root = styled("div")({
   flexGrow: 1,
   minHeight: "87vh",
   height: "auto",
@@ -21,23 +21,26 @@ const Root = styled('div')({
 });
 
 export default function Home() {
-  const [jobDataList,setJobDataList]= useState([])
+  const [jobDataList, setJobDataList] = useState([]);
   const [page, setPage] = useState(1);
-  const [startCount,setStartCount] = useState(0)
-  const [endCount,setEndCount] = useState(9)
-  const [firstPick,setFirstPick] = useState('') //選取職缺A的index,畫border用
-  const [secondPick,setSecondPick] = useState('') //選取職缺B的index,畫border用
-  const [pickCount,setPickCount] = useState(0) //其餘btn 是否disabled判斷用
-  const [selectItemA,setSelectItemA] = useState() //選取職缺A內容
-  const [selectItemB,setSelectItemB] = useState() //選取職缺B內容
-  const [active, setActive] = useState(false)
-
+  const [startCount, setStartCount] = useState(0);
+  const [endCount, setEndCount] = useState(9);
+  const [firstPick, setFirstPick] = useState(""); //選取職缺A的index,畫border用
+  const [secondPick, setSecondPick] = useState(""); //選取職缺B的index,畫border用
+  const [pickCount, setPickCount] = useState(0); //其餘btn 是否disabled判斷用
+  const [selectItemA, setSelectItemA] = useState(); //選取職缺A內容
+  const [selectItemB, setSelectItemB] = useState(); //選取職缺B內容
+  const [active, setActive] = useState(false);
 
   const scrollToAnchor = (anchorname) => {
     if (anchorname) {
       const anchorElement = document.getElementById(anchorname);
       if (anchorElement) {
-        anchorElement.scrollIntoView({ behavior: "smooth", block: "start", inline: 'start' });
+        anchorElement.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+          inline: "start",
+        });
       }
     }
   };
@@ -46,71 +49,103 @@ export default function Home() {
     if (anchorname) {
       const anchorElement = document.getElementById(anchorname);
       if (anchorElement) {
-        anchorElement.scrollIntoView({ behavior: "auto", block: "start", inline: 'start' });
+        anchorElement.scrollIntoView({
+          behavior: "auto",
+          block: "start",
+          inline: "start",
+        });
       }
     }
   };
 
   const handleChange = (event, value) => {
-    scrollToAnchor("top");
+    scrollToAnchor("listtop");
     setPage(value);
-    setStartCount(value*10-10)
-    setEndCount(value*10-1)
-
+    setStartCount(value * 10 - 10);
+    setEndCount(value * 10 - 1);
   };
 
   useEffect(() => {
     /* eslint-disable */
     scrollToAnchorJump("top");
-    const fetchData = async () =>{
+    const fetchData = async () => {
       try {
-        const {data: response} = await axios.get('http://localhost:5000/job/list');
+        const { data: response } = await axios.get(
+          "http://localhost:5000/job/list"
+        );
         setJobDataList(response);
       } catch (error) {
         console.error(error.message);
       }
-    }
+    };
 
     fetchData();
   }, []);
 
-
-  const ItemList = (start,end) => {
+  const ItemList = (start, end) => {
     const row = [];
-    for (var i = start; i <= end ; i++) {
+    for (var i = start; i <= end; i++) {
       row.push(
-        <ItemCard key={i+""} i={i} jobDataList={jobDataList} firstPick={firstPick} setFirstPick={setFirstPick}
-         secondPick={secondPick} setSecondPick={setSecondPick} 
-         pickCount={pickCount} setPickCount={setPickCount}
-         selectItemA={selectItemA}  selectItemB={selectItemB}
-         setSelectItemA={setSelectItemA} setSelectItemB={setSelectItemB}
-         setActive={setActive}
-         />
-      );      
+        <ItemCard
+          key={i + ""}
+          i={i}
+          jobDataList={jobDataList}
+          firstPick={firstPick}
+          setFirstPick={setFirstPick}
+          secondPick={secondPick}
+          setSecondPick={setSecondPick}
+          pickCount={pickCount}
+          setPickCount={setPickCount}
+          selectItemA={selectItemA}
+          selectItemB={selectItemB}
+          setSelectItemA={setSelectItemA}
+          setSelectItemB={setSelectItemB}
+          setActive={setActive}
+        />
+      );
     }
-    return row
+    return row;
   };
 
   return (
-
-<Root id="top" >
-
-  <UserTestResult/>
-
-{ ItemList(startCount,endCount) }
-  <Grid
-  container
-  direction="row"
-  justifyContent="center"
-  alignItems="flex-start"
->
-  <Pagination sx={{pt:"2rem"}}  shape="rounded" size="large" count={jobDataList? jobDataList.length/10:10} page={page} onChange={handleChange} />
-</Grid>
-<Footer />
-<CompareFooter  active={active} setActive={setActive} pickCount={pickCount} setPickCount={setPickCount} selectItemA={selectItemA} selectItemB={selectItemB} setSelectItemA={setSelectItemA} setSelectItemB={setSelectItemB}/>
-</Root>
-
-
-  
-  )
+    <Root id="top">
+      <UserTestResult MBTIResult={ENFJ} />
+      <Typography
+        id="listtop"
+        variant="h5"
+        gutterBottom
+        component="div"
+        sx={{ color: variables.Focus_Green, fontWeight: "bold", mt: "1rem" }}
+      >
+        職缺列表
+      </Typography>
+      {ItemList(startCount, endCount)}
+      <Grid
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="flex-start"
+      >
+        <Pagination
+          sx={{ pt: "2rem" }}
+          shape="rounded"
+          size="large"
+          count={jobDataList ? jobDataList.length / 10 : 10}
+          page={page}
+          onChange={handleChange}
+        />
+      </Grid>
+      <Footer />
+      <CompareFooter
+        active={active}
+        setActive={setActive}
+        pickCount={pickCount}
+        setPickCount={setPickCount}
+        selectItemA={selectItemA}
+        selectItemB={selectItemB}
+        setSelectItemA={setSelectItemA}
+        setSelectItemB={setSelectItemB}
+      />
+    </Root>
+  );
 }

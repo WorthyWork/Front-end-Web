@@ -36,16 +36,16 @@ const NoDataPaper = styled(Paper)(({ theme }) => ({
   backgroundRepeat: "no-repeat",
 }));
 
-const DataResultPaper = styled(Paper)(({ theme }) => ({
+const ImgPaper = styled(Paper)(({ theme }) => ({
   display:"flex",
   justifyContent:"center",
   alignItems:"end",
-  width: "12rem",
+  width: "19rem",
   height: "20rem",
   overflowY: "auto",
   backgroundColor: "#fff",
   backgroundPosition :'center',
-  backgroundSize: "160px, auto ,contain",
+  backgroundSize: "180px, auto ,contain",
   backgroundRepeat: "no-repeat",
 }));
 
@@ -53,5 +53,5 @@ const DataResultPaper = styled(Paper)(({ theme }) => ({
 
 
 export {
-  TestButton,NoDataPaper,DataResultPaper
+  TestButton,NoDataPaper,ImgPaper
 }

@@ -1,26 +1,24 @@
-import React from 'react';
-import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
-import AssessmentRoundedIcon from '@mui/icons-material/AssessmentRounded';
-import BorderColorRoundedIcon from '@mui/icons-material/BorderColorRounded';
+import React from "react";
+import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import BorderColorRoundedIcon from "@mui/icons-material/BorderColorRounded";
 
 export const SidebarData = [
   {
-    title: '首頁',
-    path: 'home',
+    title: "首頁",
+    path: "home",
     icon: <HomeRoundedIcon />,
-    cName: 'nav-text'
+    cName: "nav-text",
   },
   {
-    title: '測驗',
-    path: 'personalitytest',
+    title: "測驗",
+    path: "personalitytest",
     icon: <BorderColorRoundedIcon />,
-    cName: 'nav-text'
+    cName: "nav-text",
   },
-  {
-    title: '比較',
-    path: 'jobcompare',
-    icon: <AssessmentRoundedIcon />,
-    cName: 'nav-text'
-  },
-
+  // {
+  //   title: '比較',
+  //   path: 'jobcompare',
+  //   icon: <AssessmentRoundedIcon />,
+  //   cName: 'nav-text'
+  // },
 ];
