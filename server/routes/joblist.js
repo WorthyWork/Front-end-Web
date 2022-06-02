@@ -2,15 +2,17 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 const cheerio = require("cheerio");
-const {
-  json
-} = require("express");
+const { json } = require("express");
+const https = require("https");
 
 router.get("/list", async (req, res, next) => {
   // #swagger.tags = ['Job']
+  const agent = new https.Agent({
+    rejectUnauthorized: false,
+  });
   try {
     const response = await axios.get(
-      "https://quality.data.gov.tw/dq_download_json.php?nid=44062&md5_url=a6aae2308db15175f343ffa4fe93eeab"
+      "https://apiservice.mol.gov.tw/OdService/download/A17000000J-030144-nkP", { httpsAgent: agent }
     );
     const result = response.data.filter((r) => {
       var stopdate = r.STOP_DATE;
@@ -18,7 +20,7 @@ router.get("/list", async (req, res, next) => {
       var month = stopdate.substring(4, 6);
       var day = stopdate.substring(6, 8);
       var date = new Date(year, month - 1, day);
-      return date > new Date() || stopdate==="額滿為止";
+      return date > new Date() || stopdate === "額滿為止";
     });
     res.send(result);
   } catch (err) {
