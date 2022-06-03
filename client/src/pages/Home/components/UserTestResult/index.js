@@ -195,9 +195,7 @@ export default function UserTestResult(props) {
           </Typography>
           <Typography variant="body2">
             {" "}
-            {MBTIJobRecommend[MBTIResult] === "無特定"
-              ? ""
-              : MBTIJobRecommend[MBTIResult]}
+            {MBTIJobRecommend[MBTIResult]}
             {DISCJobRecommend[DISCResult]}
           </Typography>
         </Paper>

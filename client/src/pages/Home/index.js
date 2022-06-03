@@ -7,6 +7,7 @@ import Footer from "../../container/footer";
 import CompareFooter from "./components/CompareFooter";
 import UserTestResult from "./components/UserTestResult";
 import variables from "../../styles/variables";
+import { MBTIJobRecommend } from "./components/UserTestResult/MBTIdata";
 
 const Root = styled("div")({
   flexGrow: 1,
@@ -32,6 +33,8 @@ export default function Home() {
   const [active, setActive] = useState(false);
   const MBTIResult = localStorage.getItem("MBTIResult");
   const DISCResult = localStorage.getItem("DISCResult");
+  var jobParams = MBTIJobRecommend[MBTIResult].split(",");
+  // console.log("test", jobParams[1]);
 
   const scrollToAnchor = (anchorname) => {
     if (anchorname) {
@@ -69,6 +72,7 @@ export default function Home() {
   useEffect(() => {
     /* eslint-disable */
     scrollToAnchorJump("top");
+
     const fetchData = async () => {
       try {
         const { data: response } = await axios.get(
@@ -79,8 +83,26 @@ export default function Home() {
         console.error(error.message);
       }
     };
+    // const test = async () => {
+    //   try {
+    //     const { data: response } = await axios.get(
+    //       "http://localhost:5000/job/list",
+    //       {
+    //         params: {
+    //           cjobname: jobParams[0],
+    //           cjobname: jobParams[1],
+    //           cjobname: jobParams[2],
+    //         },
+    //       }
+    //     );
+    //     console.log("response", response);
+    //   } catch (error) {
+    //     console.error(error.message);
+    //   }
+    // };
 
     fetchData();
+    // test();
   }, []);
 
   const ItemList = (start, end) => {

@@ -222,27 +222,31 @@ export default function ItemCard(props) {
                 {/* 地區 / 薪水 / 學歷 / 人數  */}
                 {jobDataList[i] ? (
                   <>
+                    {/* 地區 */}
                     <Typography noWrap sx={{ fontSize: "1rem" }}>
                       <LocationOnIcon
                         sx={{ fontSize: 15, m: "-2px", pr: "3px" }}
                       />
                       {jobDataList[i] ? jobDataList[i].CITYNAME : null}
                     </Typography>
+                    {/* 薪水 */}
                     <Typography noWrap sx={{ fontSize: "1rem", pl: "1rem" }}>
                       <AttachMoneyIcon
                         sx={{ fontSize: 15, m: "-2px", pr: "3px" }}
                       />
-                      {jobDataList[i]
-                        ? jobDataList[i].SALARYCD +
-                          jobDataList[i].SALARY_L +
-                          "-" +
+                      {jobDataList[i] ? jobDataList[i].SALARYCD : null}
+                      {jobDataList[i].SALARY_U
+                        ? jobDataList[i].SALARY_L +
+                          " - " +
                           jobDataList[i].SALARY_U
-                        : null}
+                        : jobDataList[i].SALARY_L}
                     </Typography>
+                    {/*學歷 */}
                     <Typography noWrap sx={{ fontSize: "1rem", pl: "1rem" }}>
                       <SchoolIcon sx={{ fontSize: 15, m: "-2px", pr: "7px" }} />
                       {jobDataList[i] ? jobDataList[i].EDGRDESC : null}
                     </Typography>
+                    {/*人數 */}
                     <Typography noWrap sx={{ fontSize: "1rem", pl: "1rem" }}>
                       <PersonIcon sx={{ fontSize: 15, m: "-2px", pr: "3px" }} />
                       {jobDataList[i] ? jobDataList[i].AVAILREQNUM : null}
