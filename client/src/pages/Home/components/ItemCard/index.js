@@ -148,7 +148,6 @@ export default function ItemCard(props) {
               ) : (
                 <Skeleton variant="text" sx={{ width: "300px" }} />
               )}
-
               <FormControlLabel
                 sx={{ color: variables.Focus_Green }}
                 value="start"
@@ -233,7 +232,12 @@ export default function ItemCard(props) {
                       <AttachMoneyIcon
                         sx={{ fontSize: 15, m: "-2px", pr: "3px" }}
                       />
-                      {jobDataList[i] ? jobDataList[i].SALARYCD : null}
+                      {jobDataList[i]
+                        ? jobDataList[i].SALARYCD +
+                          jobDataList[i].SALARY_L +
+                          "-" +
+                          jobDataList[i].SALARY_U
+                        : null}
                     </Typography>
                     <Typography noWrap sx={{ fontSize: "1rem", pl: "1rem" }}>
                       <SchoolIcon sx={{ fontSize: 15, m: "-2px", pr: "7px" }} />

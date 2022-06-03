@@ -6,7 +6,6 @@ import { Pagination, Grid, Typography } from "@mui/material";
 import Footer from "../../container/footer";
 import CompareFooter from "./components/CompareFooter";
 import UserTestResult from "./components/UserTestResult";
-import ENFJ from "../../assets/ENFJ.svg";
 import variables from "../../styles/variables";
 
 const Root = styled("div")({
@@ -31,6 +30,8 @@ export default function Home() {
   const [selectItemA, setSelectItemA] = useState(); //選取職缺A內容
   const [selectItemB, setSelectItemB] = useState(); //選取職缺B內容
   const [active, setActive] = useState(false);
+  const MBTIResult = localStorage.getItem("MBTIResult");
+  const DISCResult = localStorage.getItem("DISCResult");
 
   const scrollToAnchor = (anchorname) => {
     if (anchorname) {
@@ -109,7 +110,7 @@ export default function Home() {
 
   return (
     <Root id="top">
-      <UserTestResult MBTIResult={ENFJ} />
+      <UserTestResult MBTIResult={MBTIResult} DISCResult={DISCResult} />
       <Typography
         id="listtop"
         variant="h5"
@@ -130,7 +131,7 @@ export default function Home() {
           sx={{ pt: "2rem" }}
           shape="rounded"
           size="large"
-          count={jobDataList ? jobDataList.length / 10 : 10}
+          count={jobDataList ? Math.ceil(jobDataList.length / 10) : 10}
           page={page}
           onChange={handleChange}
         />

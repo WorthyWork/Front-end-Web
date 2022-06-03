@@ -34,32 +34,35 @@ export default function CompareFooter(props) {
       const { data: illegalB } = await axios.get(
         "http://localhost:5000/illegal/" + selectItemB.COMPNAME
       );
-      const { data: capitalA } = await axios.get(
-        "http://localhost:5000/capital/" + selectItemA.COMPNAME
-      );
-      const { data: capitalB } = await axios.get(
-        "http://localhost:5000/capital/" + selectItemB.COMPNAME
-      );
+      // const { data: capitalA } = await axios.get(
+      //   "http://localhost:5000/capital/" + selectItemA.COMPNAME
+      // );
+      // const { data: capitalB } = await axios.get(
+      //   "http://localhost:5000/capital/" + selectItemB.COMPNAME
+      // );
 
       localStorage.setItem("illegalA", JSON.stringify(illegalA));
       localStorage.setItem("illegalB", JSON.stringify(illegalB));
-      if (capitalA[0] !== undefined) {
-        localStorage.setItem(
-          "capitalA",
-          JSON.stringify(capitalA[0].Capital_Stock_Amount)
-        );
-      } else {
-        localStorage.setItem("capitalA", "null");
-      }
-      if (capitalB[0] !== undefined) {
-        localStorage.setItem(
-          "capitalB",
-          JSON.stringify(capitalB[0].Capital_Stock_Amount)
-        );
-      } else {
-        localStorage.setItem("capitalB", "null");
-      }
+      // if (capitalA[0] !== undefined) {
+      //   localStorage.setItem(
+      //     "capitalA",
+      //     JSON.stringify(capitalA[0].Capital_Stock_Amount)
+      //   );
+      // } else {
+      //   localStorage.setItem("capitalA", "null");
+      // }
+      // if (capitalB[0] !== undefined) {
+      //   localStorage.setItem(
+      //     "capitalB",
+      //     JSON.stringify(capitalB[0].Capital_Stock_Amount)
+      //   );
+      // } else {
+      //   localStorage.setItem("capitalB", "null");
+      // }
 
+      // localStorage.setItem("salaryA", JSON.stringify(salaryA));
+      // localStorage.setItem("salaryB", JSON.stringify(salaryB));
+      // console.log("salaryB", salaryB);
       history.push({
         pathname: "/jobcompare",
         // selectItemA:selectItemA,

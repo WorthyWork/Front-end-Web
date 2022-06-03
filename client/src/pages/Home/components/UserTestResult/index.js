@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
 import No_Data from "../../../../assets/No_Data.svg";
 /* eslint-disable */
@@ -45,13 +45,88 @@ const DescriptionPaper = styled(Paper)(({ theme }) => ({
 }));
 
 export default function UserTestResult(props) {
-  const resultData = props.resultData;
-  const MBTIResult = props.MBTIResult;
-  const DISCResult = Peacock;
   let history = useHistory();
+  const MBTIResult = props.MBTIResult;
+  const DISCResult = props.DISCResult;
+  const [MBTI, setMBTI] = useState("");
+  const [DISC, setDISC] = useState("");
   const handelTestPage = () => {
     history.push("/personalitytest");
   };
+  const MBTITransform = () => {
+    switch (MBTIResult) {
+      case "ENFJ":
+        setMBTI(ENFJ);
+        break;
+      case "ENFP":
+        setMBTI(ENFP);
+        break;
+      case "ENTJ":
+        setMBTI(ENTJ);
+        break;
+      case "ENTP":
+        setMBTI(ENTP);
+        break;
+      case "ESFJ":
+        setMBTI(ESFJ);
+        break;
+      case "ESFP":
+        setMBTI(ESFP);
+        break;
+      case "ESTJ":
+        setMBTI(ESTJ);
+        break;
+      case "ESTP":
+        setMBTI(ESTP);
+        break;
+      case "INFJ":
+        setMBTI(INFJ);
+        break;
+      case "INFP":
+        setMBTI(INFP);
+        break;
+      case "INTJ":
+        setMBTI(INTJ);
+        break;
+      case "INTP":
+        setMBTI(INTP);
+      case "ISFJ":
+        setMBTI(ISFJ);
+      case "ISFP":
+        setMBTI(ISFP);
+      case "ISTJ":
+        setMBTI(ISTJ);
+      case "ISTP":
+        setMBTI(ISTP);
+        break;
+      default:
+        break;
+    }
+  };
+  const DISCTransform = () => {
+    switch (DISCResult) {
+      case "Tiger":
+        setDISC(Tiger);
+        break;
+      case "Peacock":
+        setDISC(Peacock);
+        break;
+      case "KoalaBear":
+        setDISC(KoalaBear);
+        break;
+      case "Owl":
+        setDISC(Owl);
+        break;
+      default:
+        break;
+    }
+  };
+
+  useEffect(() => {
+    MBTITransform();
+    DISCTransform();
+  }, []);
+
   const noResultData = () => {
     return (
       <>
@@ -87,20 +162,25 @@ export default function UserTestResult(props) {
         <Box sx={{ display: "flex", justifyContent: "space-around" }}>
           <ImgPaper
             elevation={0}
-            sx={{ backgroundImage: `url(${MBTIResult})` }}
+            sx={{ backgroundImage: `url(${MBTI})` }}
           ></ImgPaper>
           <ImgPaper
             elevation={0}
-            sx={{ backgroundImage: `url(${DISCResult})` }}
+            sx={{ backgroundImage: `url(${DISC})` }}
           ></ImgPaper>
         </Box>
         <Box sx={{ display: "flex", justifyContent: "space-around" }}>
           <DescriptionPaper elevation={0}>
-            <Typography variant="body2">{MBTIDescription.ENFJ}</Typography>
+            <Typography variant="body2">
+              {MBTIDescription[MBTIResult]}
+            </Typography>
           </DescriptionPaper>
           <Divider orientation="vertical" variant="middle" flexItem />
           <DescriptionPaper elevation={0}>
-            <Typography variant="body2"> {DISCDescription.peacock}</Typography>
+            <Typography variant="body2">
+              {" "}
+              {DISCDescription[DISCResult]}
+            </Typography>
           </DescriptionPaper>
         </Box>
         <Divider variant="middle" />
@@ -115,8 +195,10 @@ export default function UserTestResult(props) {
           </Typography>
           <Typography variant="body2">
             {" "}
-            {MBTIJobRecommend.ESTJ === "無特定" ? "" : MBTIJobRecommend.ESTJ}
-            {DISCJobRecommend.peacock}
+            {MBTIJobRecommend[MBTIResult] === "無特定"
+              ? ""
+              : MBTIJobRecommend[MBTIResult]}
+            {DISCJobRecommend[DISCResult]}
           </Typography>
         </Paper>
       </Paper>
@@ -133,7 +215,7 @@ export default function UserTestResult(props) {
       >
         個人指標
       </Typography>
-      {resultData ? <>{noResultData()}</> : <>{ResultData()}</>}
+      {MBTIResult ? <>{ResultData()}</> : <>{noResultData()}</>}
     </>
   );
 }

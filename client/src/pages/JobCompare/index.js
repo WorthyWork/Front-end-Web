@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import variables from "../../styles/variables";
 import { Root } from "./StyleComponents";
 import Chart from "./components/Chart/index";
-import { useLocation, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import ApplyCard from "./components/ApplyCard";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import IllegalDialog from "./components/IllegalDialog";
@@ -101,7 +101,15 @@ export default function JobCompare() {
   ];
 
   const vacancyDataA = [
-    { title: "工作待遇", value: "月薪 33000 - 36000 元" },
+    {
+      title: "工作待遇",
+      value: selectItemA
+        ? selectItemA.SALARYCD +
+          selectItemA.SALARY_L +
+          "-" +
+          selectItemA.SALARY_U
+        : "無資料",
+    },
     { title: "員工性質", value: selectItemA ? selectItemA.WK_TYPE : "" },
     {
       title: "上班時間",
@@ -113,7 +121,15 @@ export default function JobCompare() {
     { title: "工作內容", value: selectItemA ? selectItemA.JOB_DETAIL : "" },
   ];
   const vacancyDataB = [
-    { title: "工作待遇", value: " 月薪 28300 - 34700 元" },
+    {
+      title: "工作待遇",
+      value: selectItemB
+        ? selectItemB.SALARYCD +
+          selectItemB.SALARY_L +
+          "-" +
+          selectItemB.SALARY_U
+        : "無資料",
+    },
     { title: "員工性質", value: selectItemB ? selectItemB.WK_TYPE : "" },
     {
       title: "上班時間",
