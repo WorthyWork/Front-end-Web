@@ -2,7 +2,7 @@
   "name": "worthywork",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/worthywork/",
+  "homepage": ".",
   "dependencies": {
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
@@ -36,9 +36,9 @@
     "typescript": "^4.3.2"
   },
   "scripts": {
-    "start": "set PORT=3200 && react-scripts start",
+    "start": "react-scripts start",
     "server": "nodemon server.js",
-    "build": "set \"GENERATE_SOURCEMAP=false\" && react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -6,8 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server",
-    "dev": "nodemon server",
-    "swagger-autogen": "node ./swagger.js"
+    "dev-server": "nodemon server",
+    "swagger-autogen": "node ./swagger.js",
+    "heroku-postbuild": "cd client && npm install && npm run build",
+    "client": "cd client && npm start",
+    "dev": "concurrently \"npm run dev-server\" \"npm run client\""
   },
   "keywords": [],
   "author": "",
@@ -15,7 +18,9 @@
   "dependencies": {
     "axios": "^0.27.2",
     "cheerio": "^1.0.0-rc.11",
+    "concurrently": "^7.2.1",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "swagger-ui-express": "^4.4.0"
   },

@@ -33,7 +33,7 @@ export default function Home() {
   const [active, setActive] = useState(false);
   const MBTIResult = localStorage.getItem("MBTIResult");
   const DISCResult = localStorage.getItem("DISCResult");
-  var jobParams = MBTIJobRecommend[MBTIResult].split(",");
+  // var jobParams = MBTIJobRecommend[MBTIResult].split(",");
   // console.log("test", jobParams[1]);
 
   const scrollToAnchor = (anchorname) => {
