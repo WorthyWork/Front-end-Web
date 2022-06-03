@@ -5,7 +5,7 @@
     "description": "opendata-contest project used.",
     "version": "1.0.0"
   },
-  "host": "https://worthywork-app.herokuapp.com/",
+  "host": "localhost:5000",
   "basePath": "/",
   "tags": [
     {

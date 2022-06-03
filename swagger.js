@@ -5,7 +5,7 @@ const doc = {
       title: 'WorthyWork Web API',
       description: 'opendata-contest project used.',
     },
-    host: 'https://worthywork-app.herokuapp.com/',
+    host: 'localhost:5000',
     schemes: ['http'],
     tags: [
       {
