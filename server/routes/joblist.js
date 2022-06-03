@@ -10,9 +10,11 @@ router.get("/list", async (req, res, next) => {
   const agent = new https.Agent({
     rejectUnauthorized: false,
   });
+  const cjobname = req.query.cjobname;
   try {
     const response = await axios.get(
-      "https://apiservice.mol.gov.tw/OdService/download/A17000000J-030144-nkP", { httpsAgent: agent }
+      "https://apiservice.mol.gov.tw/OdService/download/A17000000J-030144-nkP",
+      { httpsAgent: agent }
     );
     const result = response.data.filter((r) => {
       var stopdate = r.STOP_DATE;
@@ -20,7 +22,14 @@ router.get("/list", async (req, res, next) => {
       var month = stopdate.substring(4, 6);
       var day = stopdate.substring(6, 8);
       var date = new Date(year, month - 1, day);
-      return date > new Date() || stopdate === "額滿為止";
+      if (cjobname)
+        return (
+          (date > new Date() || stopdate === "額滿為止") &&
+          (r.CJOB_NAME1 === cjobname[0] ||
+            r.CJOB_NAME1 === cjobname[1] ||
+            r.CJOB_NAME1 === cjobname[2])
+        );
+      else return date > new Date() || stopdate === "額滿為止";
     });
     res.send(result);
   } catch (err) {
