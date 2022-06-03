@@ -29,10 +29,10 @@ export default function CompareFooter(props) {
     dispatch({ type: SET_LOADING, payload: true });
     try {
       const { data: illegalA } = await axios.get(
-        "http://localhost:5000/illegal/" + selectItemA.COMPNAME
+        "https://worthywork-app.herokuapp.com/illegal/" + selectItemA.COMPNAME
       );
       const { data: illegalB } = await axios.get(
-        "http://localhost:5000/illegal/" + selectItemB.COMPNAME
+        "https://worthywork-app.herokuapp.com/illegal/" + selectItemB.COMPNAME
       );
       // const { data: capitalA } = await axios.get(
       //   "http://localhost:5000/capital/" + selectItemA.COMPNAME

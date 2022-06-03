@@ -5,7 +5,7 @@
 - 產品或服務名稱: WorthyWork─智能工作推薦暨比較平台
 ## API Document
 Use `/api-docs` route to visit Swagger API Docs Page.
-[![api docs](./img/apidocs.png)](http://localhost:5000/api-docs/)
+[![api docs](./img/apidocs.png)](https://worthywork-app.herokuapp.com/api-docs/)
 ## Installation
 
 Initialize front-end:

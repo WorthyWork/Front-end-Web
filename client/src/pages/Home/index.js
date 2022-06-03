@@ -76,7 +76,7 @@ export default function Home() {
     const fetchData = async () => {
       try {
         const { data: response } = await axios.get(
-          "http://localhost:5000/job/list"
+          "https://worthywork-app.herokuapp.com/job/list"
         );
         setJobDataList(response);
       } catch (error) {
