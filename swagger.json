@@ -31,7 +31,13 @@
           "Job"
         ],
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "cjobname",
+            "in": "query",
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"

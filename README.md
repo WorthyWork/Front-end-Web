@@ -8,41 +8,21 @@ Use `/api-docs` route to visit Swagger API Docs Page.
 [![api docs](./img/apidocs.png)](https://worthywork-app.herokuapp.com/api-docs/)
 ## Installation
 
-Initialize front-end:
+Initialize:
 ```console
-$ cd client
-$ npm install express
+$ npm run init
 ```
 
-Initialize back-end:
-```console
-$ cd server
-$ npm install express
-```
 
 ## Quick Start
 
-### Start Front-end Server:
+### Start Front-end & Back-end Server in Development mode:
 ```console
-$ cd client
-$ npm start
-```
-
-### Start Back-end Server:
-#### Online Mode:
-```console
-$ cd server
-$ npm start
-```
-#### Offline Mode:
-```console
-$ cd server
 $ npm run dev
 ```
 
 ### Auto-Geneterate Swagger Doc
 ```console
-$ cd server
 $ npm run swagger-autogen
 ```
 ## People
