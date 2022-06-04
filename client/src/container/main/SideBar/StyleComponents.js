@@ -41,7 +41,7 @@ const LogoName = styled("div")({
 const SideBarList = styled(ListItem)({
   position: "relative",
   height: "50px",
-  width: "100%",
+  // width: "100%",
   listStyle: "none",
   color: variables.White,
   fontSize: "1.5rem",
@@ -58,7 +58,7 @@ const UserBar = styled(ListItem)({
   position: "fixed",
   bottom: 20,
   left: 17,
-  width: "100%",
+  width: "auto",
   listStyle: "none",
   color: variables.White,
   fontSize: "1.5rem",

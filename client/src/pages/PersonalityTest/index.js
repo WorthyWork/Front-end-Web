@@ -31,6 +31,19 @@ export default function PersonalityTest() {
   const [MBTIResult, setMBTIResult] = useState("");
   const [DISCResult, setDISCResult] = useState("");
 
+  const scrollToAnchor = (anchorname) => {
+    if (anchorname) {
+      const anchorElement = document.getElementById(anchorname);
+      if (anchorElement) {
+        anchorElement.scrollIntoView({
+          behavior: "auto",
+          block: "start",
+          inline: "start",
+        });
+      }
+    }
+  };
+
   const MBTIPart = () => {
     let first = "";
     let second = "";
@@ -84,14 +97,17 @@ export default function PersonalityTest() {
     });
   };
   useEffect(() => {
-    console.log("here");
     MBTIPart();
     DISCPart();
   }, [progress === 30 || progress >= 30]);
 
+  useEffect(() => {
+    scrollToAnchor("top");
+  }, []);
+
   return (
     <>
-      <Root>
+      <Root id="top">
         <TestCard>
           <BorderLinearProgress
             variant="determinate"

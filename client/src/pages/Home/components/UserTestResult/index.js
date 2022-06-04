@@ -184,7 +184,13 @@ export default function UserTestResult(props) {
           </DescriptionPaper>
         </Box>
         <Divider variant="middle" />
-        <Paper elevation={0} sx={{ px: "2rem", py: "1.5rem" }}>
+        <Paper
+          elevation={0}
+          sx={{
+            px: "2rem",
+            py: "1.5rem",
+          }}
+        >
           <Typography
             gutterBottom
             variant="h5"
@@ -193,11 +199,14 @@ export default function UserTestResult(props) {
           >
             適合領域
           </Typography>
-          <Typography variant="body2">
-            {" "}
-            {MBTIJobRecommend[MBTIResult]}
-            {DISCJobRecommend[DISCResult]}
-          </Typography>
+          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Typography variant="body2">
+              {" "}
+              {MBTIJobRecommend[MBTIResult]}
+              {DISCJobRecommend[DISCResult]}
+            </Typography>
+            <Typography variant="body2">Test</Typography>
+          </Box>
         </Paper>
       </Paper>
     );
