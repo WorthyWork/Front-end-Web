@@ -5,14 +5,22 @@
 - 產品或服務名稱: WorthyWork─智能工作推薦暨比較平台
 ## API Document
 Use `/api-docs` route to visit Swagger API Docs Page.
-[![api docs](./img/apidocs.png)](https://worthywork-app.herokuapp.com/api-docs/)
+(only in development localhost mode can use)
+[![api docs](./img/api-docs.png)]()
 ## Installation
 
-Initialize:
+npm Initialize:
 ```console
+$ npm init
+$ npm cd client && npm init
 $ npm run init
 ```
 
+Firestore Initialize:
+```console
+$ mkdir secret
+```
+get firebase-adminsdk.json and move to /secret dir
 
 ## Quick Start
 

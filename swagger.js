@@ -19,6 +19,10 @@ const doc = {
       {
         name: "Company",
         description: "查詢公司資本資料"
+      },
+      {
+        name: "Data",
+        description: "資料蒐集/數據分析"
       }
     ]
   };

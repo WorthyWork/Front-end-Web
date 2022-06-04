@@ -5,6 +5,8 @@ const app = express();
 const path = require("path");
 
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
@@ -19,6 +21,9 @@ app.use("/illegal", illegalRouter);
 
 const capitalRouter = require("./routes/capital");
 app.use("/capital", capitalRouter);
+
+const dataRouter = require("./routes/data");
+app.use("/data", dataRouter);
 
 if (process.env.NODE_ENV === "production") {
   // Serve any static files

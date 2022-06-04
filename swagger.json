@@ -19,6 +19,10 @@
     {
       "name": "Company",
       "description": "查詢公司資本資料"
+    },
+    {
+      "name": "Data",
+      "description": "資料蒐集/數據分析"
     }
   ],
   "schemes": [
@@ -131,6 +135,45 @@
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      }
+    },
+    "/data/push": {
+      "post": {
+        "tags": [
+          "Data"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "mbti": {
+                  "example": "any"
+                },
+                "disc": {
+                  "example": "any"
+                },
+                "rating": {
+                  "example": "any"
+                },
+                "cjobname": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
