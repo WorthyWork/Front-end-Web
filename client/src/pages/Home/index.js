@@ -14,10 +14,6 @@ const Root = styled("div")({
   minHeight: "87vh",
   height: "auto",
   marginTop: "2rem",
-  // minHeight: "87vh",
-  // flexGrow: 1,
-  // margin: "auto",
-  // height: "auto"
 });
 
 export default function Home() {
@@ -102,7 +98,6 @@ export default function Home() {
     // };
 
     fetchData();
-    // test();
   }, []);
 
   const ItemList = (start, end) => {

@@ -26,16 +26,21 @@ import Owl from "../../../../assets/Owl.svg";
 import Tiger from "../../../../assets/Tiger.svg";
 import KoalaBear from "../../../../assets/KoalaBear.svg";
 import Peacock from "../../../../assets/Peacock.svg";
-import Chameleon from "../../../../assets/Chameleon.svg";
+// import Chameleon from "../../../../assets/Chameleon.svg";
 import { MBTIDescription } from "./MBTIdata";
 import { DISCDescription } from "./DISCdata";
 import { MBTIJobRecommend } from "./MBTIdata";
-import { DISCJobRecommend } from "./DISCdata";
 
 import { Typography, Paper, Box, Divider } from "@mui/material";
 import variables from "../../../../styles/variables";
 import { useHistory } from "react-router-dom";
-import { TestButton, NoDataPaper, ImgPaper } from "./StyleComponents";
+import {
+  TestButton,
+  NoDataPaper,
+  ImgPaper,
+  RatingBtn,
+} from "./StyleComponents";
+import RatingDialog from "./components/RatingDialog";
 
 const DescriptionPaper = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -50,6 +55,7 @@ export default function UserTestResult(props) {
   const DISCResult = props.DISCResult;
   const [MBTI, setMBTI] = useState("");
   const [DISC, setDISC] = useState("");
+  const [ratingDialogOpen, setRatingDialogOpen] = useState(false);
   const handelTestPage = () => {
     history.push("/personalitytest");
   };
@@ -122,6 +128,10 @@ export default function UserTestResult(props) {
     }
   };
 
+  const handleRatingDialog = () => {
+    setRatingDialogOpen(true);
+  };
+
   useEffect(() => {
     MBTITransform();
     DISCTransform();
@@ -148,6 +158,11 @@ export default function UserTestResult(props) {
   const ResultData = () => {
     return (
       <Paper sx={{ width: "auto", height: "auto" }}>
+        <RatingDialog
+          ratingDialogOpen={ratingDialogOpen}
+          setRatingDialogOpen={setRatingDialogOpen}
+          recommendList={MBTIJobRecommend[MBTIResult]}
+        />
         <Paper elevation={0} sx={{ px: "2rem", pt: "1.5rem" }}>
           <Typography
             gutterBottom
@@ -199,13 +214,24 @@ export default function UserTestResult(props) {
           >
             適合領域
           </Typography>
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
             <Typography variant="body2">
               {" "}
               {MBTIJobRecommend[MBTIResult]}
-              {DISCJobRecommend[DISCResult]}
+              {/* {DISCJobRecommend[DISCResult]} */}
             </Typography>
-            <Typography variant="body2">Test</Typography>
+            <RatingBtn
+              variant="outlined"
+              onClick={() => handleRatingDialog(MBTIJobRecommend[MBTIResult])}
+            >
+              給予回饋
+            </RatingBtn>
           </Box>
         </Paper>
       </Paper>
