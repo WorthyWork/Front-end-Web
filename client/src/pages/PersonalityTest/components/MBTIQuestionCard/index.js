@@ -41,7 +41,6 @@ export default function MBTIQuestionCard(props) {
 
   const handleChange = (event) => {
     setValue(event.target.value);
-    console.log("value", event.target.value);
     switch (event.target.value) {
       case "E":
         setCountE(countE + 1);

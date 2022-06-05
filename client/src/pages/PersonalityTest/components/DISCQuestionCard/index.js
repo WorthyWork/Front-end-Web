@@ -33,7 +33,6 @@ export default function DISCQuestionCard(props) {
 
   const handleChange = (event) => {
     setValue(event.target.value);
-    console.log("value", event.target.value);
     switch (event.target.value) {
       case "Tiger":
         setCountTiger(countTiger + 1);
