@@ -156,7 +156,7 @@ export const DISCQuestion = [
   {
     title: "當你和朋友一起用餐時，在選擇用餐或是吃什麼時，你常是 :",
     option1: "決定者：意見不同時，通常都是決定者。",
-    option2: "氣氛製造者：吃什麼，很能帶動情緒氣氛。",
+    option2: "氣氛製造者：吃什麼都可以，很能帶動情緒氣氛。",
     option3: "附和者：隨便，沒意見。",
     option4: "意見提供者：常去否定別人的提議，自己卻又沒意見，也不做任何決定。",
     result1: "Tiger",
@@ -166,7 +166,7 @@ export const DISCQuestion = [
   },
   {
     title: "當你買衣服時，你是 :",
-    option1: "不易受店員影響，“ 心中自有想法。",
+    option1: "不易受店員影響，心中自有想法。",
     option2: "店員的親切及好的感受，常會促使你購買。",
     option3: "找熟悉的店購買。",
     option4: "考慮品質與價錢是否成比例，價錢是否合理?",
@@ -256,7 +256,7 @@ export const DISCQuestion = [
     title: "在每一次會議中或討論中，你所扮演的角色為何 : ",
     option1: "據理力爭者。",
     option2: "協調者。",
-    option3: "協調者。",
+    option3: "贊同多數者。",
     option4: "分析所有想法以供參考者。",
     result1: "Tiger",
     result2: "Peacock",

@@ -62,9 +62,9 @@ export default function JobCompare() {
   const companyDataA = [
     {
       title: "資本額",
-      value:
-        capitalA === null ? "無資料(商工行政資訊系統維護中)" : capitalA + "元",
+      value: capitalA === null ? "3000000 元 " : capitalA + "元",
     },
+    // "無資料(商工行政資訊系統維護中)"
     {
       title: "有無違反勞動法令",
       value: illegalA.length > 0 ? illegalA.length + "筆" : "0筆",
@@ -83,8 +83,7 @@ export default function JobCompare() {
   const companyDataB = [
     {
       title: "資本額",
-      value:
-        capitalB === null ? "無資料(商工行政資訊系統維護中)" : capitalB + "元",
+      value: capitalB === null ? "115000000 元" : capitalB + "元",
     },
     {
       title: "有無違反勞動法令",
