@@ -24,8 +24,6 @@ const CustomWidthTooltip = styled(({ className, ...props }) => (
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(2),
-  // backgroundColor: checked ? 'rgba(2, 73, 89,0.05)':variables.White,
-  // backgroundColor: checked ? 'rgba(2, 103, 115,0.1)':variables.White,
   [theme.breakpoints.up("md")]: {
     minWidth: "50rem",
     height: "13rem",
