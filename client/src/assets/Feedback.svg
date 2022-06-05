@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="231" viewBox="0 0 280 231">
+  <g id="Feedback" transform="translate(-10581 -4840)">
+    <text id="已收到回饋_謝謝您_" data-name="已收到回饋，謝謝您!" transform="translate(10581 5063)" fill="#3f3f3f" font-size="30" font-family="YuGothicUI-Bold, Yu Gothic UI" font-weight="700"><tspan x="0" y="0">已收到回饋，謝謝您</tspan><tspan y="0" font-family="SegoeUI-Bold, Segoe UI">!</tspan></text>
+    <g id="Ellipse_39" data-name="Ellipse 39" transform="translate(10647 4840)" fill="#f3f5f7" stroke="#c0bfbf" stroke-width="4">
+      <circle cx="73.5" cy="73.5" r="73.5" stroke="none"/>
+      <circle cx="73.5" cy="73.5" r="71.5" fill="none"/>
+    </g>
+    <g id="Ellipse_40" data-name="Ellipse 40" transform="translate(10689.5 4894.887)" fill="#9a9898" stroke="#9a9898" stroke-width="1">
+      <circle cx="5" cy="5" r="5" stroke="none"/>
+      <circle cx="5" cy="5" r="4.5" fill="none"/>
+    </g>
+    <g id="Ellipse_41" data-name="Ellipse 41" transform="translate(10740.5 4894.887)" fill="#9a9898" stroke="#9a9898" stroke-width="1">
+      <ellipse cx="5.5" cy="5" rx="5.5" ry="5" stroke="none"/>
+      <ellipse cx="5.5" cy="5" rx="5" ry="4.5" fill="none"/>
+    </g>
+    <path id="Path_99" data-name="Path 99" d="M607.616,5891.357s23.55,23.01,48.214,0" transform="translate(10088.384 -969.584)" fill="none" stroke="#9a9898" stroke-linecap="round" stroke-width="4"/>
+  </g>
+</svg>

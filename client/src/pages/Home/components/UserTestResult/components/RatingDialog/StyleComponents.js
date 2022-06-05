@@ -1,5 +1,5 @@
 import { styled } from "@mui/material/styles";
-import { Button, Dialog } from "@mui/material";
+import { Button, Dialog, Paper } from "@mui/material";
 import variables from "../../../../../../styles/variables";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -10,6 +10,19 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     padding: theme.spacing(1),
   },
 }));
+
+const FeedbackPaper = styled(Paper)({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "end",
+  width: "auto",
+  height: "100%",
+  overflowY: "auto",
+  backgroundColor: "#fff",
+  backgroundPosition: "50% 0.5rem",
+  backgroundSize: "150px, auto ,contain",
+  backgroundRepeat: "no-repeat",
+});
 
 const FinishBtn = styled(Button)({
   boxShadow: "none",
@@ -46,4 +59,4 @@ const CancelBtn = styled(Button)({
   },
 });
 
-export { BootstrapDialog, FinishBtn, CancelBtn };
+export { BootstrapDialog, FeedbackPaper, FinishBtn, CancelBtn };

@@ -10,7 +10,13 @@ import {
   Box,
 } from "@mui/material";
 import RatingStar from "./RatingStar";
-import { BootstrapDialog, FinishBtn, CancelBtn } from "./StyleComponents";
+import {
+  BootstrapDialog,
+  FeedbackPaper,
+  FinishBtn,
+  CancelBtn,
+} from "./StyleComponents";
+import Feedback from "../../../../../../assets/Feedback.svg";
 
 export default function RatingDialog(props) {
   const ratingDialogOpen = props.ratingDialogOpen;
@@ -18,6 +24,8 @@ export default function RatingDialog(props) {
   const recommendList = props.recommendList;
   const MBTIResult = props.MBTIResult;
   const DISCResult = props.DISCResult;
+  const sendFeedback = props.sendFeedback;
+  const setSendFeedback = props.setSendFeedback;
   var jobParams = recommendList.split(",");
   const [jobCategory, setJobCategory] = useState([
     { type: jobParams[0], rate: 3 },
@@ -50,38 +58,31 @@ export default function RatingDialog(props) {
   };
 
   const handleSentRatingData = () => {
-    axios
-      .post("http://localhost:5000/data/push", {
-        mbti: MBTIResult,
-        disc: DISCResult,
-        rating: jobCategory[0].rate,
-        cjobname: jobCategory[0].type,
-      })
-      .then((res) => {
-        console.log("res", res);
-      });
-    axios
-      .post("http://localhost:5000/data/push", {
-        mbti: MBTIResult,
-        disc: DISCResult,
-        rating: jobCategory[1].rate,
-        cjobname: jobCategory[1].type,
-      })
-      .then((res) => {
-        console.log("res", res);
-      });
-    axios
-      .post("http://localhost:5000/data/push", {
-        mbti: MBTIResult,
-        disc: DISCResult,
-        rating: jobCategory[2].rate,
-        cjobname: jobCategory[2].type,
-      })
-      .then((res) => {
-        console.log("res", res);
-      });
+    setSendFeedback(true);
+    axios.post("http://localhost:5000/data/push", {
+      mbti: MBTIResult,
+      disc: DISCResult,
+      rating: jobCategory[0].rate,
+      cjobname: jobCategory[0].type,
+    });
 
-    setRatingDialogOpen(false);
+    axios.post("http://localhost:5000/data/push", {
+      mbti: MBTIResult,
+      disc: DISCResult,
+      rating: jobCategory[1].rate,
+      cjobname: jobCategory[1].type,
+    });
+
+    axios.post("http://localhost:5000/data/push", {
+      mbti: MBTIResult,
+      disc: DISCResult,
+      rating: jobCategory[2].rate,
+      cjobname: jobCategory[2].type,
+    });
+
+    setTimeout(() => {
+      setRatingDialogOpen(false);
+    }, 1000);
   };
 
   return (
@@ -99,27 +100,36 @@ export default function RatingDialog(props) {
           }}
           dividers
         >
-          <Typography
-            variant="subtitle2"
-            component="div"
-            sx={{ mb: "1.35rem" }}
-          >
-            (1星表非常不適合 / 5星表非常適合)
-          </Typography>
+          {sendFeedback ? (
+            <FeedbackPaper
+              elevation={0}
+              sx={{ backgroundImage: `url(${Feedback})` }}
+            ></FeedbackPaper>
+          ) : (
+            <>
+              <Typography
+                variant="subtitle2"
+                component="div"
+                sx={{ mb: "1.35rem" }}
+              >
+                (1星表非常不適合 / 5星表非常適合)
+              </Typography>
 
-          {jobCategory.map((item, index) => (
-            <Box
-              key={index + ""}
-              sx={{ display: "flex", alignItems: "center" }}
-            >
-              <RatingStar
-                item={item}
-                index={index}
-                jobCategory={jobCategory}
-                setJobCategory={setJobCategory}
-              />
-            </Box>
-          ))}
+              {jobCategory.map((item, index) => (
+                <Box
+                  key={index + ""}
+                  sx={{ display: "flex", alignItems: "center" }}
+                >
+                  <RatingStar
+                    item={item}
+                    index={index}
+                    jobCategory={jobCategory}
+                    setJobCategory={setJobCategory}
+                  />
+                </Box>
+              ))}
+            </>
+          )}
         </DialogContent>
         <DialogActions>
           <CancelBtn

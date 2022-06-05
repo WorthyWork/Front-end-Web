@@ -55,6 +55,7 @@ export default function UserTestResult(props) {
   const DISCResult = props.DISCResult;
   const [MBTI, setMBTI] = useState("");
   const [DISC, setDISC] = useState("");
+  const [sendFeedback, setSendFeedback] = useState(false);
   const [ratingDialogOpen, setRatingDialogOpen] = useState(false);
   const handelTestPage = () => {
     history.push("/personalitytest");
@@ -129,6 +130,7 @@ export default function UserTestResult(props) {
   };
 
   const handleRatingDialog = () => {
+    setSendFeedback(false);
     setRatingDialogOpen(true);
   };
 
@@ -162,6 +164,8 @@ export default function UserTestResult(props) {
           ratingDialogOpen={ratingDialogOpen}
           setRatingDialogOpen={setRatingDialogOpen}
           recommendList={MBTIJobRecommend[MBTIResult]}
+          sendFeedback={sendFeedback}
+          setSendFeedback={setSendFeedback}
           MBTIResult={MBTIResult}
           DISCResult={DISCResult}
         />
