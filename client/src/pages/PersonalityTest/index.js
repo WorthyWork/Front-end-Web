@@ -97,6 +97,7 @@ export default function PersonalityTest() {
     });
   };
   useEffect(() => {
+    /* eslint-disable */
     MBTIPart();
     DISCPart();
   }, [progress === 30 || progress >= 30]);

@@ -38,64 +38,59 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
 export default function ItemCard(props) {
   const jobDataList = props.jobDataList ? props.jobDataList : [];
   const i = props.i;
-  const pickCount = props.pickCount;
-  const setPickCount = props.setPickCount;
-  const firstPick = props.firstPick;
-  const setFirstPick = props.setFirstPick;
-  const secondPick = props.secondPick;
-  const setSecondPick = props.setSecondPick;
-  const selectItemA = props.selectItemA;
-  const selectItemB = props.selectItemB;
+  const selectItemA = props.selectItemA; //顯示用
+  const selectItemB = props.selectItemB; //顯示用
   const setSelectItemA = props.setSelectItemA;
   const setSelectItemB = props.setSelectItemB;
-  const setActive = props.setActive;
+  const selectItem = props.selectItem; //存localstorage用
+  const setSelectItem = props.setSelectItem;
+  const setActive = props.setActive; //控制footerbar用
   const [checked, setChecked] = useState(false);
+  const [checkedIndexA, setCheckedIndexA] = useState(""); // 顯示border用
+  const [checkedIndexB, setCheckedIndexB] = useState(""); // 顯示border用
+
+  var ItemAisEmpty = Object.keys(selectItem.ItemA).length <= 0;
+  var ItemBisEmpty = Object.keys(selectItem.ItemB).length <= 0;
 
   const handleChange = (event) => {
     setActive(true);
-    if (pickCount === 0) {
-      setFirstPick(i);
-      setPickCount(1);
-      setSelectItemA(jobDataList[i]);
+    if (checked) {
+      // 已被選取者點擊無效直接return
+      return;
+    }
+    if (ItemAisEmpty) {
+      setSelectItem({ ...selectItem, ItemA: jobDataList[i], IndexA: i });
       localStorage.setItem("selectItemA", JSON.stringify(jobDataList[i]));
+      setSelectItemA(jobDataList[i]);
+      setCheckedIndexA(i);
       setChecked(true);
-    } else if (firstPick === i) {
-      setPickCount(pickCount - 1);
-      setChecked(false);
-      setFirstPick("");
-      setSelectItemA("");
-    } else if (pickCount === 1) {
-      setSecondPick(i);
-      setPickCount(2);
-      setSelectItemB(jobDataList[i]);
+    } else if (ItemBisEmpty) {
+      setSelectItem({ ...selectItem, ItemB: jobDataList[i], IndexB: i });
       localStorage.setItem("selectItemB", JSON.stringify(jobDataList[i]));
+      setSelectItemB(jobDataList[i]);
+      setCheckedIndexB(i);
       setChecked(true);
-    } else if (secondPick === i) {
-      setPickCount(pickCount - 1);
-      setChecked(false);
-      setSecondPick("");
-      setSelectItemB("");
     }
   };
 
   useEffect(() => {
     /* eslint-disable */
-    if (firstPick === i || secondPick === i) {
+    if (checkedIndexA === i || checkedIndexB === i) {
       setChecked(true);
     }
   }, []);
 
   useEffect(() => {
     /* eslint-disable */
-    // setChecked(false)
-    setFirstPick("");
-  }, [selectItemA === ""]);
+    setChecked(false);
+    setCheckedIndexA("");
+  }, [selectItemA === "" && checkedIndexA === i]);
 
   useEffect(() => {
     /* eslint-disable */
-    // setChecked(false)
-    setSecondPick("");
-  }, [selectItemB === ""]);
+    setChecked(false);
+    setCheckedIndexB("");
+  }, [selectItemB === "" && checkedIndexB === i]);
 
   return (
     <Box sx={{ overflow: "hidden" }}>
@@ -158,8 +153,12 @@ export default function ItemCard(props) {
                     onChange={handleChange}
                     icon={<RadioButtonUncheckedRoundedIcon />}
                     checkedIcon={<CheckCircleRoundedIcon />}
-                    // disabled={pickCount==2 && i!==firstPick && i!==secondPick}
-                    // {...label}
+                    disabled={
+                      !ItemAisEmpty &&
+                      !ItemBisEmpty &&
+                      i !== selectItem.IndexA &&
+                      i !== selectItem.IndexB
+                    }
                     sx={{
                       color: variables.Focus_Green,
                       borderRadius: "40px",

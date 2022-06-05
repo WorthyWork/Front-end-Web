@@ -21,16 +21,22 @@ export default function Home() {
   const [page, setPage] = useState(1);
   const [startCount, setStartCount] = useState(0);
   const [endCount, setEndCount] = useState(9);
+
   const [firstPick, setFirstPick] = useState(""); //選取職缺A的index,畫border用
   const [secondPick, setSecondPick] = useState(""); //選取職缺B的index,畫border用
   const [pickCount, setPickCount] = useState(0); //其餘btn 是否disabled判斷用
   const [selectItemA, setSelectItemA] = useState(); //選取職缺A內容
   const [selectItemB, setSelectItemB] = useState(); //選取職缺B內容
+  const [selectItem, setSelectItem] = useState({
+    ItemA: {},
+    IndexA: "",
+    ItemB: {},
+    IndexB: "",
+  });
   const [active, setActive] = useState(false);
   const MBTIResult = localStorage.getItem("MBTIResult");
   const DISCResult = localStorage.getItem("DISCResult");
   var jobParams = MBTIResult ? MBTIJobRecommend[MBTIResult].split(",") : "";
-
   const scrollToAnchor = (anchorname) => {
     if (anchorname) {
       const anchorElement = document.getElementById(anchorname);
@@ -103,6 +109,8 @@ export default function Home() {
           setSecondPick={setSecondPick}
           pickCount={pickCount}
           setPickCount={setPickCount}
+          selectItem={selectItem}
+          setSelectItem={setSelectItem}
           selectItemA={selectItemA}
           selectItemB={selectItemB}
           setSelectItemA={setSelectItemA}
@@ -146,6 +154,8 @@ export default function Home() {
       <CompareFooter
         active={active}
         setActive={setActive}
+        selectItem={selectItem}
+        setSelectItem={setSelectItem}
         pickCount={pickCount}
         setPickCount={setPickCount}
         selectItemA={selectItemA}

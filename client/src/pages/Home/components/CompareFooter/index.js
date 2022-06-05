@@ -16,14 +16,17 @@ import { SET_LOADING } from "../../../../actions/types";
 export default function CompareFooter(props) {
   const dispatch = useDispatch();
   let history = useHistory();
-  const setPickCount = props.setPickCount;
-  const pickCount = props.pickCount;
+  const selectItem = props.selectItem;
+  const setSelectItem = props.setSelectItem;
   const selectItemA = props.selectItemA;
   const selectItemB = props.selectItemB;
   const setSelectItemA = props.setSelectItemA;
   const setSelectItemB = props.setSelectItemB;
   const active = props.active;
   const setActive = props.setActive;
+
+  var ItemAisEmpty = Object.keys(selectItem.ItemA).length <= 0;
+  var ItemBisEmpty = Object.keys(selectItem.ItemB).length <= 0;
 
   const fetchData = async () => {
     dispatch({ type: SET_LOADING, payload: true });
@@ -60,17 +63,8 @@ export default function CompareFooter(props) {
       //   localStorage.setItem("capitalB", "null");
       // }
 
-      // localStorage.setItem("salaryA", JSON.stringify(salaryA));
-      // localStorage.setItem("salaryB", JSON.stringify(salaryB));
-      // console.log("salaryB", salaryB);
       history.push({
         pathname: "/jobcompare",
-        // selectItemA:selectItemA,
-        // selectItemB:selectItemB,
-        // illegalA:illegalA,
-        // illegalB:illegalB,
-        // capitalA:capitalA,
-        // capitalB:capitalB
       });
       dispatch({ type: SET_LOADING, payload: false });
     } catch (error) {
@@ -86,12 +80,14 @@ export default function CompareFooter(props) {
     fetchData();
   };
   const handleDeleteA = () => {
+    setSelectItem({ ...selectItem, ItemA: {}, IndexA: "" });
+    localStorage.setItem("selectItemA", JSON.stringify({}));
     setSelectItemA("");
-    setPickCount(pickCount - 1);
   };
   const handleDeleteB = () => {
+    setSelectItem({ ...selectItem, ItemB: {}, IndexB: "" });
+    localStorage.setItem("selectItemB", JSON.stringify({}));
     setSelectItemB("");
-    setPickCount(pickCount - 1);
   };
 
   return (
@@ -286,7 +282,7 @@ export default function CompareFooter(props) {
           <Box sx={{ pl: "2rem" }}>
             <StartCompareButton
               variant="outlined"
-              disabled={pickCount < 2}
+              disabled={ItemAisEmpty || ItemBisEmpty}
               onClick={handleCompare}
             >
               開始比較
