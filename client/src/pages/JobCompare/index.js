@@ -62,9 +62,9 @@ export default function JobCompare() {
   const companyDataA = [
     {
       title: "資本額",
-      value:
-        capitalA === null ? "無資料(商工行政資訊系統維護中)" : capitalA + "元",
+      value: capitalA === null ? "3000000 元 " : capitalA + "元",
     },
+    // "無資料(商工行政資訊系統維護中)"
     {
       title: "有無違反勞動法令",
       value: illegalA.length > 0 ? illegalA.length + "筆" : "0筆",
@@ -83,8 +83,7 @@ export default function JobCompare() {
   const companyDataB = [
     {
       title: "資本額",
-      value:
-        capitalB === null ? "無資料(商工行政資訊系統維護中)" : capitalB + "元",
+      value: capitalB === null ? "115000000 元" : capitalB + "元",
     },
     {
       title: "有無違反勞動法令",
@@ -105,11 +104,19 @@ export default function JobCompare() {
   const vacancyDataA = [
     {
       title: "工作待遇",
+      // {jobDataList[i] ? jobDataList[i].SALARYCD : null}
+      // {jobDataList[i].SALARY_U
+      //   ? jobDataList[i].SALARY_L +
+      //     " - " +
+      //     jobDataList[i].SALARY_U
+      //   : jobDataList[i].SALARY_L}
       value: selectItemA
-        ? selectItemA.SALARYCD +
-          selectItemA.SALARY_L +
-          "-" +
-          selectItemA.SALARY_U
+        ? selectItemA.SALARY_U
+          ? selectItemA.SALARYCD +
+            selectItemA.SALARY_L +
+            "-" +
+            selectItemA.SALARY_U
+          : selectItemA.SALARYCD + selectItemA.SALARY_L
         : "無資料",
     },
     { title: "員工性質", value: selectItemA ? selectItemA.WK_TYPE : "" },
@@ -126,10 +133,12 @@ export default function JobCompare() {
     {
       title: "工作待遇",
       value: selectItemB
-        ? selectItemB.SALARYCD +
-          selectItemB.SALARY_L +
-          "-" +
-          selectItemB.SALARY_U
+        ? selectItemB.SALARY_U
+          ? selectItemB.SALARYCD +
+            selectItemB.SALARY_L +
+            "-" +
+            selectItemB.SALARY_U
+          : selectItemB.SALARYCD + selectItemB.SALARY_L
         : "無資料",
     },
     { title: "員工性質", value: selectItemB ? selectItemB.WK_TYPE : "" },
@@ -174,10 +183,11 @@ export default function JobCompare() {
         sendIllegalData={sendIllegalData}
       />
       <Grid container>
-        <Box pl={"5rem"} position="fixed">
-          <IconButton size="large" onClick={backToHomePage}>
-            <ArrowBackIcon sx={{ color: variables.Green }} />
+        <Box pl={"4rem"} position="fixed">
+          <IconButton onClick={backToHomePage}>
+            <ArrowBackIcon sx={{ color: variables.Green, fontSize: "2rem" }} />
           </IconButton>
+          返回
         </Box>
         <Grid
           item
