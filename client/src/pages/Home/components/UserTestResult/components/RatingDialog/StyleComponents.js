@@ -1,6 +1,15 @@
 import { styled } from "@mui/material/styles";
-import { Button } from "@mui/material";
+import { Button, Dialog } from "@mui/material";
 import variables from "../../../../../../styles/variables";
+
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  "& .MuiDialogContent-root": {
+    padding: theme.spacing(2),
+  },
+  "& .MuiDialogActions-root": {
+    padding: theme.spacing(1),
+  },
+}));
 
 const FinishBtn = styled(Button)({
   boxShadow: "none",
@@ -37,4 +46,4 @@ const CancelBtn = styled(Button)({
   },
 });
 
-export { FinishBtn, CancelBtn };
+export { BootstrapDialog, FinishBtn, CancelBtn };

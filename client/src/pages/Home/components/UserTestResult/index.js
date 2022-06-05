@@ -162,6 +162,8 @@ export default function UserTestResult(props) {
           ratingDialogOpen={ratingDialogOpen}
           setRatingDialogOpen={setRatingDialogOpen}
           recommendList={MBTIJobRecommend[MBTIResult]}
+          MBTIResult={MBTIResult}
+          DISCResult={DISCResult}
         />
         <Paper elevation={0} sx={{ px: "2rem", pt: "1.5rem" }}>
           <Typography

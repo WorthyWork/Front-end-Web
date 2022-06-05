@@ -1,10 +1,7 @@
 import React, { useState } from "react";
-import { styled } from "@mui/material/styles";
 import CloseIcon from "@mui/icons-material/Close";
-
+import axios from "axios";
 import {
-  Dialog,
-  Button,
   DialogTitle,
   DialogContent,
   DialogActions,
@@ -13,27 +10,32 @@ import {
   Box,
 } from "@mui/material";
 import RatingStar from "./RatingStar";
-import { FinishBtn, CancelBtn } from "./StyleComponents";
+import { BootstrapDialog, FinishBtn, CancelBtn } from "./StyleComponents";
 
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  "& .MuiDialogContent-root": {
-    padding: theme.spacing(2),
-  },
-  "& .MuiDialogActions-root": {
-    padding: theme.spacing(1),
-  },
-}));
+export default function RatingDialog(props) {
+  const ratingDialogOpen = props.ratingDialogOpen;
+  const setRatingDialogOpen = props.setRatingDialogOpen;
+  const recommendList = props.recommendList;
+  const MBTIResult = props.MBTIResult;
+  const DISCResult = props.DISCResult;
+  var jobParams = recommendList.split(",");
+  const [jobCategory, setJobCategory] = useState([
+    { type: jobParams[0], rate: 3 },
+    { type: jobParams[1], rate: 3 },
+    { type: jobParams[2], rate: 3 },
+  ]);
 
-const BootstrapDialogTitle = (props) => {
-  const { children, onClose, ...other } = props;
+  const BootstrapDialogTitle = (props) => {
+    const { children, ...other } = props;
 
-  return (
-    <DialogTitle sx={{ m: 0, p: 2, pl: "1.5rem" }} {...other}>
-      {children}
-      {onClose ? (
+    return (
+      <DialogTitle sx={{ m: 0, p: 2, pl: "1.5rem" }} {...other}>
+        {children}
         <IconButton
           aria-label="close"
-          onClick={onClose}
+          onClick={() => {
+            setRatingDialogOpen(false);
+          }}
           sx={{
             position: "absolute",
             right: 8,
@@ -43,35 +45,49 @@ const BootstrapDialogTitle = (props) => {
         >
           <CloseIcon />
         </IconButton>
-      ) : null}
-    </DialogTitle>
-  );
-};
+      </DialogTitle>
+    );
+  };
 
-export default function RatingDialog(props) {
-  const ratingDialogOpen = props.ratingDialogOpen;
-  const setRatingDialogOpen = props.setRatingDialogOpen;
-  const recommendList = props.recommendList;
-  var jobParams = recommendList.split(",");
-  const [jobCategory, setJobCategory] = useState([
-    { type: jobParams[0], rate: 3 },
-    { type: jobParams[1], rate: 3 },
-    { type: jobParams[2], rate: 3 },
-  ]);
+  const handleSentRatingData = () => {
+    axios
+      .post("http://localhost:5000/data/push", {
+        mbti: MBTIResult,
+        disc: DISCResult,
+        rating: jobCategory[0].rate,
+        cjobname: jobCategory[0].type,
+      })
+      .then((res) => {
+        console.log("res", res);
+      });
+    axios
+      .post("http://localhost:5000/data/push", {
+        mbti: MBTIResult,
+        disc: DISCResult,
+        rating: jobCategory[1].rate,
+        cjobname: jobCategory[1].type,
+      })
+      .then((res) => {
+        console.log("res", res);
+      });
+    axios
+      .post("http://localhost:5000/data/push", {
+        mbti: MBTIResult,
+        disc: DISCResult,
+        rating: jobCategory[2].rate,
+        cjobname: jobCategory[2].type,
+      })
+      .then((res) => {
+        console.log("res", res);
+      });
 
-  const handleRatingDialog = () => {
     setRatingDialogOpen(false);
   };
 
   return (
     <div>
-      <BootstrapDialog
-        fullWidth
-        maxWidth="sm"
-        onClose={handleRatingDialog}
-        open={ratingDialogOpen}
-      >
-        <BootstrapDialogTitle onClose={handleRatingDialog}>
+      <BootstrapDialog fullWidth maxWidth="sm" open={ratingDialogOpen}>
+        <BootstrapDialogTitle>
           <Typography variant="h6" component="div">
             請問下列三大項產業領域，您認為和您適合的程度為何 ?
           </Typography>
@@ -106,10 +122,15 @@ export default function RatingDialog(props) {
           ))}
         </DialogContent>
         <DialogActions>
-          <CancelBtn variant="outlined" onClick={handleRatingDialog}>
+          <CancelBtn
+            variant="outlined"
+            onClick={() => {
+              setRatingDialogOpen(false);
+            }}
+          >
             取消
           </CancelBtn>
-          <FinishBtn onClick={handleRatingDialog}>完成</FinishBtn>
+          <FinishBtn onClick={handleSentRatingData}>完成</FinishBtn>
         </DialogActions>
       </BootstrapDialog>
     </div>

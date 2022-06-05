@@ -104,12 +104,6 @@ export default function JobCompare() {
   const vacancyDataA = [
     {
       title: "工作待遇",
-      // {jobDataList[i] ? jobDataList[i].SALARYCD : null}
-      // {jobDataList[i].SALARY_U
-      //   ? jobDataList[i].SALARY_L +
-      //     " - " +
-      //     jobDataList[i].SALARY_U
-      //   : jobDataList[i].SALARY_L}
       value: selectItemA
         ? selectItemA.SALARY_U
           ? selectItemA.SALARYCD +

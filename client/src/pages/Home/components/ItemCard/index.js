@@ -191,20 +191,26 @@ export default function ItemCard(props) {
                 <Skeleton variant="text" sx={{ width: "300px" }} />
               )}
 
-              <Typography noWrap sx={{ pl: "2rem", fontSize: "0.8rem" }}>
+              {/* <Typography noWrap sx={{ pl: "2rem", fontSize: "0.8rem" }}>
                 {jobDataList[i] ? jobDataList[i].WKTIME : null}
               </Typography>
               <Typography noWrap sx={{ fontSize: "0.8rem" }}>
                 {jobDataList[i] ? jobDataList[i].WK_TYPE : null}
-              </Typography>
+              </Typography> */}
+              {jobDataList[i] ? (
+                <Typography noWrap sx={{ pl: "1rem", fontSize: "0.8rem" }}>
+                  ( {jobDataList[i] ? jobDataList[i].CJOB_NAME1 : null} )
+                </Typography>
+              ) : null}
             </Box>
+
             <Grid container wrap="nowrap" spacing={2}>
               <CustomWidthTooltip
                 title={jobDataList[i] ? jobDataList[i].JOB_DETAIL : ""}
               >
                 <Grid item xs>
                   {/* 工作內容 */}
-                  <Typography noWrap sx={{ fontSize: "0.9rem", pt: "0.5rem" }}>
+                  <Typography noWrap sx={{ fontSize: "0.9rem", pt: "1.5rem" }}>
                     {jobDataList[i] ? jobDataList[i].JOB_DETAIL : null}
                   </Typography>
                 </Grid>
@@ -216,7 +222,7 @@ export default function ItemCard(props) {
               direction="row"
               justifyContent="space-between"
               alignItems="flex-end"
-              minHeight={60}
+              minHeight={50}
             >
               <Box display="flex" direction="row">
                 {/* 地區 / 薪水 / 學歷 / 人數  */}

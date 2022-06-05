@@ -29,8 +29,7 @@ export default function Home() {
   const [active, setActive] = useState(false);
   const MBTIResult = localStorage.getItem("MBTIResult");
   const DISCResult = localStorage.getItem("DISCResult");
-  // var jobParams = MBTIJobRecommend[MBTIResult].split(",");
-  // console.log("test", jobParams[1]);
+  var jobParams = MBTIResult ? MBTIJobRecommend[MBTIResult].split(",") : "";
 
   const scrollToAnchor = (anchorname) => {
     if (anchorname) {
@@ -69,35 +68,25 @@ export default function Home() {
     /* eslint-disable */
     scrollToAnchorJump("top");
 
-    const fetchData = async () => {
-      try {
-        const { data: response } = await axios.get(
-          "https://worthywork-app.herokuapp.com/job/list"
-        );
-        setJobDataList(response);
-      } catch (error) {
-        console.error(error.message);
-      }
-    };
-    // const test = async () => {
-    //   try {
-    //     const { data: response } = await axios.get(
-    //       "http://localhost:5000/job/list",
-    //       {
-    //         params: {
-    //           cjobname: jobParams[0],
-    //           cjobname: jobParams[1],
-    //           cjobname: jobParams[2],
-    //         },
-    //       }
-    //     );
-    //     console.log("response", response);
-    //   } catch (error) {
-    //     console.error(error.message);
-    //   }
-    // };
-
-    fetchData();
+    if (MBTIResult && DISCResult) {
+      axios
+        .get("https://worthywork-app.herokuapp.com/job/list", {
+          params: {
+            cjobname1: jobParams[0],
+            cjobname2: jobParams[1],
+            cjobname3: jobParams[2],
+          },
+        })
+        .then((res) => {
+          // console.log("res1", res.data);
+          setJobDataList(res.data);
+        });
+    } else {
+      axios.get("https://worthywork-app.herokuapp.com/job/list").then((res) => {
+        // console.log("res2", res.data);
+        setJobDataList(res.data);
+      });
+    }
   }, []);
 
   const ItemList = (start, end) => {
@@ -148,7 +137,7 @@ export default function Home() {
           sx={{ pt: "2rem" }}
           shape="rounded"
           size="large"
-          count={jobDataList ? Math.ceil(jobDataList.length / 10) : 10}
+          count={jobDataList ? Math.ceil(jobDataList.length / 10) - 1 : 10}
           page={page}
           onChange={handleChange}
         />
