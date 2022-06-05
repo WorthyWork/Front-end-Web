@@ -10,7 +10,10 @@ router.get("/list", async (req, res, next) => {
   const agent = new https.Agent({
     rejectUnauthorized: false,
   });
-  const cjobname = req.query.cjobname;
+  const cjobname1 = req.query.cjobname1;
+  const cjobname2 = req.query.cjobname2;
+  const cjobname3 = req.query.cjobname3;
+
   try {
     const response = await axios.get(
       "https://apiservice.mol.gov.tw/OdService/download/A17000000J-030144-nkP",
@@ -22,12 +25,12 @@ router.get("/list", async (req, res, next) => {
       var month = stopdate.substring(4, 6);
       var day = stopdate.substring(6, 8);
       var date = new Date(year, month - 1, day);
-      if (cjobname)
+      if (cjobname1&&cjobname2&&cjobname3)
         return (
           (date > new Date() || stopdate === "額滿為止") &&
-          (r.CJOB_NAME1 === cjobname[0] ||
-            r.CJOB_NAME1 === cjobname[1] ||
-            r.CJOB_NAME1 === cjobname[2])
+          (r.CJOB_NAME1.includes(cjobname1) ||
+            r.CJOB_NAME1.includes(cjobname2) ||
+            r.CJOB_NAME1.includes(cjobname3))
         );
       else return date > new Date() || stopdate === "額滿為止";
     });
