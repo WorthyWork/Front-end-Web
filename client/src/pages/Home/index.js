@@ -103,12 +103,6 @@ export default function Home() {
           key={i + ""}
           i={i}
           jobDataList={jobDataList}
-          firstPick={firstPick}
-          setFirstPick={setFirstPick}
-          secondPick={secondPick}
-          setSecondPick={setSecondPick}
-          pickCount={pickCount}
-          setPickCount={setPickCount}
           selectItem={selectItem}
           setSelectItem={setSelectItem}
           selectItemA={selectItemA}
@@ -116,6 +110,7 @@ export default function Home() {
           setSelectItemA={setSelectItemA}
           setSelectItemB={setSelectItemB}
           setActive={setActive}
+          setPage={setPage}
         />
       );
     }

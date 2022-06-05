@@ -59,23 +59,23 @@ export default function ItemCard(props) {
       return;
     }
     if (ItemAisEmpty) {
+      setChecked(true);
       setSelectItem({ ...selectItem, ItemA: jobDataList[i], IndexA: i });
       localStorage.setItem("selectItemA", JSON.stringify(jobDataList[i]));
       setSelectItemA(jobDataList[i]);
       setCheckedIndexA(i);
-      setChecked(true);
     } else if (ItemBisEmpty) {
+      setChecked(true);
       setSelectItem({ ...selectItem, ItemB: jobDataList[i], IndexB: i });
       localStorage.setItem("selectItemB", JSON.stringify(jobDataList[i]));
       setSelectItemB(jobDataList[i]);
       setCheckedIndexB(i);
-      setChecked(true);
     }
   };
 
   useEffect(() => {
     /* eslint-disable */
-    if (checkedIndexA === i || checkedIndexB === i) {
+    if (selectItem.IndexA === i || selectItem.IndexB === i) {
       setChecked(true);
     }
   }, []);
@@ -98,7 +98,10 @@ export default function ItemCard(props) {
         sx={{
           my: 1,
           border: 3,
-          borderColor: checked ? variables.Focus_Green : "transparent",
+          borderColor:
+            i === selectItem.IndexA || i === selectItem.IndexB
+              ? variables.Focus_Green
+              : "transparent",
         }}
       >
         <Grid container wrap="nowrap" spacing={2} pt={"0.7rem"}>
@@ -149,7 +152,7 @@ export default function ItemCard(props) {
                 control={
                   <Checkbox
                     inputProps={{ "aria-label": "controlled" }}
-                    checked={checked}
+                    checked={i === selectItem.IndexA || i === selectItem.IndexB}
                     onChange={handleChange}
                     icon={<RadioButtonUncheckedRoundedIcon />}
                     checkedIcon={<CheckCircleRoundedIcon />}
