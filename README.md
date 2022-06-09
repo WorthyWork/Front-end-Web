@@ -3,6 +3,26 @@
 - 就業多元創新應用組
 - 參賽編號: OD-16040149	
 - 產品或服務名稱: WorthyWork─智能工作推薦暨比較平台
+## Demo Video
+[![youtube demo](./img/demo.gif)](https://www.youtube.com/watch?v=IM-DsE-29v8)
+> https://www.youtube.com/watch?v=IM-DsE-29v8
+## Screenshots
+### 主要頁面
+![主要頁面](./img/demo1.png)
+### 使用者回饋頁面
+![使用者回饋頁面](./img/demo3.png)
+### 測驗頁面
+![測驗頁面](./img/demo2.png)
+### 職缺列表頁面
+![職缺列表](./img/demo4.png)
+### 加入職缺比較功能
+![加入職缺比較](./img/demo5.png)
+### 職缺比較頁面
+![職缺比較頁面1](./img/demo6.png)
+![職缺比較頁面2](./img/demo8.png)
+![職缺比較頁面3](./img/demo9.png)
+### 違反勞基法頁面
+![違反勞基法頁面](./img/demo7.png)
 ## API Document
 Use `/api-docs` route to visit Swagger API Docs Page.
 (only in development localhost mode can use)
