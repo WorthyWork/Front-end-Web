@@ -56,9 +56,9 @@ $ npm run swagger-autogen
 ## People
 
 The original author of WorthyWorkApp is [WorhyWork DevTeam](https://github.com/WorthyWork)
-
-[List of all contributors](https://github.com/WorthyWork/WorthyWorkApp/graphs/contributorss)
-
+### WorhyWork DevTeam
+- Front-end: [FinnHsu3002](https://github.com/FinnHsu3002)
+- Back-end: [msxlol](https://github.com/wutiger555)
 ## License
 
   [MIT](LICENSE)
